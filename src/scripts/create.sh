@@ -1,6 +1,6 @@
 TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
-if [ ${STATUS} -eq 1 ] ; then
+if [ "${STATUS}" -eq 1 ] ; then
      ${STATUS} = "true"
 else
      ${STATUS} = "false"
@@ -16,20 +16,20 @@ echo "[before]STATUS ${STATUS}"
 echo "[before]COLOR ${COLOR}"
 echo "[before]TEXT ${TEXT}"
 
-export API_TOKEN=$(eval echo "\$$API_TOKEN")
+export _api_token=$(eval echo "\$$API_TOKEN")
 # ORGANIZATION=$(eval echo "\$${ORGANIZATION}")
-export REPO=$(eval echo "\$$REPO")
+export _repo=$(eval echo "\$$REPO")
 # APP=$(eval echo "\$${APP}")
-export BRANCH=$(eval echo "\$$BRANCH")
+export _branch=$(eval echo "\$$BRANCH")
 STATUS=$(eval echo "\$$STATUS")
 # COLOR=$(eval echo "\$$COLOR")
 TEXT=$(eval echo "\$$TEXT")
 
-echo "[after]API_TOKEN ${API_TOKEN}"
+echo "[after]API_TOKEN ${_api_token}"
 echo "[after]ORGANIZATION ${ORGANIZATION}"
-echo "[after]REPO ${REPO}"
+echo "[after]REPO ${_repo}"
 echo "[after]APP ${APP}"
-echo "[after]BRANCH ${BRANCH}"
+echo "[after]BRANCH ${_branch}"
 echo "[after]STATUS ${STATUS}"
 echo "[after]COLOR ${COLOR}"
 echo "[after]TEXT ${TEXT}"
