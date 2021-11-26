@@ -15,14 +15,14 @@ echo "[before]STATUS ${STATUS}"
 echo "[before]COLOR ${COLOR}"
 echo "[before]TEXT ${TEXT}"
 
-API_TOKEN=$(eval echo "\$$API_TOKEN")
+API_TOKEN=$(eval echo "\$${API_TOKEN}")
 # ORGANIZATION=$(eval echo "\$${ORGANIZATION}")
-REPO=$(eval echo "\$$REPO")
+REPO=$(eval echo "${REPO}")
 # APP=$(eval echo "\$${APP}")
-BRANCH=$(eval echo "\$$BRANCH")
+BRANCH=$(eval echo "${BRANCH}")
 # STATUS=$(eval echo "\$$STATUS")
 # COLOR=$(eval echo "\$$COLOR")
-TEXT=$(eval echo "\$$TEXT")
+TEXT=$(eval echo "${TEXT}")
 
 echo "[after]API_TOKEN ${API_TOKEN}"
 echo "[after]ORGANIZATION ${ORGANIZATION}"
