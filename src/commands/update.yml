@@ -42,15 +42,15 @@ steps:
   - run:
       name: Execute curl command
       environment:
-        API_TOKEN: <<parameters.api_token>>
-        ORGANIZATION: <<parameters.organization>>
-        REPO: <<parameters.repo>>
-        APP: <<parameters.app>>
-        BRANCH: <<parameters.branch>>
-        STATUS: <<parameters.status>>
-        COLOR: <<parameters.color>>
-        TEXT: <<parameters.text>>
-      command: <<include(scripts/create.sh)>>
+        API_TOKEN: << parameters.api_token >>
+        ORGANIZATION: << parameters.organization >>
+        REPO: << parameters.repo >>
+        APP: << parameters.app >>
+        BRANCH: << parameters.branch >>
+        STATUS: << parameters.status >>
+        COLOR: << parameters.color >>
+        TEXT: << parameters.text >>
+      command: << include(scripts/create.sh) >>
   - add_ssh_keys:
       fingerprints:
       - <<parameters.ssh_key>>
@@ -58,16 +58,16 @@ steps:
   - run:
       name: Readme update
       environment:
-        README_PATH: <<parameters.readme_path>>
+        README_PATH: << parameters.readme_path >>
       command: |
-        _update_readme=`(cat <<parameters.readme_path>> | sed "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g")`
-        echo $_update_readme > <<parameters.readme_path>>
-        cat <<parameters.readme_path>>
+        _update_readme=`(cat << parameters.readme_path >> | sed "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g")`
+        echo $_update_readme > << parameters.readme_path >>
+        cat << parameters.readme_path >>
   - run:
       name: git push
       command: |
         git config --global user.email "badges@rhems-japan.co.jp"
         git config --global user.name "Mr.badges"
-        git add <<parameters.readme_path>>
+        git add << parameters.readme_path >>
         git commit -m '[skip ci] README.md Update'
         git push origin $CIRCLE_BRANCH

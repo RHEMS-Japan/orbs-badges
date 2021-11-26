@@ -36,10 +36,10 @@ jobs:
           # api_token: "${API_TOKEN}"
           organization: "RHEMS-Japan"
           app: "orb-badge-test"
-          status: true
+          status: "true"
           color: "red"
           text: "v${CIRCLE_BUILD_NUM}"
-          ssh_key: "45:10:35:2c:7d:21:f2:31:00:b6:5e:15:c1:e9:98:3e"
+          ssh_key: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
