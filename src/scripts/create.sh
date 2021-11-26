@@ -53,12 +53,12 @@ curl -X POST -H "Content-Type: application/json" \
                 \"app\": \"${APP}\",
                 \"branch\": \"${BRANCH}\",
                 \"status\": \"${STATUS}\",
-`[ -n "${TEXT}" ] && \
+$([ -n "${TEXT}" ] && \
 cat << EOF
   "txt": "${TEXT}",
-EOF`
-`[ -n "${COLOR}" ] && \
+EOF)
+$([ -n "${COLOR}" ] && \
 cat << EOF
   "color": "${COLOR}",
-EOF`
+EOF)
                 \"update\": \"${TIME}\"}"
