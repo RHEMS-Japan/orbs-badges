@@ -46,19 +46,19 @@ echo "[after]TEXT ${TEXT}"
 #                 \"update\": \"${TIME}\"}"
 
 curl -X POST -H "Content-Type: application/json" \
-          https://badges.rhems-japan.com/api-update-badge \
-           -d "{\"api_token\": \"${API_TOKEN}\",
-                \"organization\": \"${ORGANIZATION}\",
-                \"repo\": \"${REPO}\",
-                \"app\": \"${APP}\",
-                \"branch\": \"${BRANCH}\",
-                \"status\": \"${STATUS}\",
+https://badges.rhems-japan.com/api-update-badge \
+-d "{\"api_token\": \"${API_TOKEN}\",
+\"organization\": \"${ORGANIZATION}\",
+\"repo\": \"${REPO}\",
+\"app\": \"${APP}\",
+\"branch\": \"${BRANCH}\",
+\"status\": \"${STATUS}\",
 $([ -n "${TEXT}" ] && \
 cat << EOF
-  "txt": "${TEXT}",
+"txt": "${TEXT}",
 EOF)
 $([ -n "${COLOR}" ] && \
 cat << EOF
-  "color": "${COLOR}",
+"color": "${COLOR}",
 EOF)
-                \"update\": \"${TIME}\"}"
+\"update\": \"${TIME}\"}"
