@@ -37,7 +37,6 @@ parameters:
     type: string
     default: ./README.md
     description: "path of README.md"
-  
 
 steps:
   - run:
@@ -60,11 +59,9 @@ steps:
       name: Readme update
       environment:
         README_PATH: <<parameters.readme_path>>
-      
       command: |
         _update_readme=`(cat <<parameters.readme_path>> | sed "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g")`
         echo $_update_readme > <<parameters.readme_path>>
-
   - run:
       name: git push
       command: |
