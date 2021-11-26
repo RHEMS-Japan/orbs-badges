@@ -16,20 +16,20 @@ echo "[before]STATUS ${STATUS}"
 echo "[before]COLOR ${COLOR}"
 echo "[before]TEXT ${TEXT}"
 
-export _api_token=$(eval echo "\$$API_TOKEN")
+API_TOKEN=$(eval echo "\$$API_TOKEN")
 # ORGANIZATION=$(eval echo "\$${ORGANIZATION}")
-export _repo=$(eval echo "\$$REPO")
+REPO=$(eval echo "\$$REPO")
 # APP=$(eval echo "\$${APP}")
-export _branch=$(eval echo "\$$BRANCH")
-STATUS=$(eval echo "\$$STATUS")
+BRANCH=$(eval echo "\$$BRANCH")
+# STATUS=$(eval echo "\$$STATUS")
 # COLOR=$(eval echo "\$$COLOR")
 TEXT=$(eval echo "\$$TEXT")
 
-echo "[after]API_TOKEN ${_api_token}"
+echo "[after]API_TOKEN ${API_TOKEN}"
 echo "[after]ORGANIZATION ${ORGANIZATION}"
-echo "[after]REPO ${_repo}"
+echo "[after]REPO ${REPO}"
 echo "[after]APP ${APP}"
-echo "[after]BRANCH ${_branch}"
+echo "[after]BRANCH ${BRANCH}"
 echo "[after]STATUS ${STATUS}"
 echo "[after]COLOR ${COLOR}"
 echo "[after]TEXT ${TEXT}"
