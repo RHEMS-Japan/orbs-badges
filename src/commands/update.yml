@@ -1,0 +1,75 @@
+description: >
+  Generate badges from the services of RHEMS BADGES.
+
+parameters:
+  api_token:
+    type: env_var_name
+    default: API_TOKEN
+    description: "The API Token of RHEMS BADGES. (Required)"
+  organization:
+    type: string
+    description: "organization name (Required)"
+  repo:
+    type: string
+    default: $CIRCLE_PROJECT_REPONAME
+    description: "if repo is empty it will use ${CIRCLE_PROJECT_REPONAME} (optional)"
+  app:
+    type: string
+    description: "app name (Required)"
+  status:
+    type: boolean
+    default: true
+    description: "set status true or false. (Required)"
+  branch:
+    type: string
+    default: $CIRCLE_BRANCH
+    description: "if branche is empty it will use ${CIRCLE_BRANCH} (optional)"
+  color:
+    type: string
+    description: "you can set color (optional)"
+  text:
+    type: string
+    description: "write text for right side (optional)"
+  ssh_key:
+    type: string
+    description: "fingerprints. (Required)"
+  readme_path:
+    type: string
+    default: ./README.md
+    description: "path of README.md"
+  
+
+steps:
+  - run:
+      name: Execute curl command
+      environment:
+        API_TOKEN: <<parameters.api_token>>
+        ORGANIZATION: <<parameters.organization>>
+        REPO: <<parameters.repo>>
+        APP: <<parameters.app>>
+        BRANCH: <<parameters.branch>>
+        STATUS: <<parameters.status>>
+        COLOR: <<parameters.color>>
+        TEXT: <<parameters.text>>
+      command: <<include(scripts/create.sh)>>
+  - add_ssh_keys:
+      fingerprints:
+      - <<parameters.ssh_key>>
+  - checkout
+  - run:
+      name: Readme update
+      environment:
+        README_PATH: <<parameters.readme_path>>
+      
+      command: |
+        _update_readme=`(cat <<parameters.readme_path>> | sed "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g")`
+        echo $_update_readme > <<parameters.readme_path>>
+
+  - run:
+      name: git push
+      command: |
+        git add <<parameters.readme_path>>
+        git commit -m '[skip ci] README.md Update'
+        git push origin $CIRCLE_BRANCH
+
+      
