@@ -3,8 +3,8 @@ description: >
 
 parameters:
   api_token:
-    type: env_var_name
-    default: API_TOKEN
+    type: string
+    default: $API_TOKEN
     description: "The API Token of RHEMS BADGES. (Required)"
   organization:
     type: string

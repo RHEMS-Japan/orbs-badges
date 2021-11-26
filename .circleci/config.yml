@@ -39,7 +39,7 @@ jobs:
           status: true
           color: "red"
           text: "v${CIRCLE_BUILD_NUM}"
-          ssh_key: "5e:c4:c6:a5:25:22:c1:80:76:23:c3:bc:f1:74:36:1f"
+          ssh_key: "45:10:35:2c:7d:21:f2:31:00:b6:5e:15:c1:e9:98:3e"
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
