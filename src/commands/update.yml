@@ -68,5 +68,3 @@ steps:
         git add <<parameters.readme_path>>
         git commit -m '[skip ci] README.md Update'
         git push origin $CIRCLE_BRANCH
-
-      
