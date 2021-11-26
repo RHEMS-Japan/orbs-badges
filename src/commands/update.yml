@@ -41,41 +41,41 @@ parameters:
 steps:
   - run:
       name: Execute curl command
-      # environment:
-      #   API_TOKEN: << parameters.api_token >>
-      #   ORGANIZATION: << parameters.organization >>
-      #   REPO: << parameters.repo >>
-      #   APP: << parameters.app >>
-      #   BRANCH: << parameters.branch >>
-      #   STATUS: << parameters.status >>
-      #   COLOR: << parameters.color >>
-      #   TEXT: << parameters.text >>
-      # command: << include(scripts/create.sh) >>
-      command: |
-        TIME=$(date '+%Y-%m-%d-%H-%M-%S')
-        if [ << parameters.status >> -eq "1" ]; then
-          STATUS="true"
-        else
-          STATUS="false"
-        fi
-        API_TOKEN=$(eval echo "\$<< parameters.api_token >>")
-        curl -X POST -H "Content-Type: application/json" \
-          https://badges.rhems-japan.com/api-update-badge \
-            -d "{\"api_token\": \"${API_TOKEN}\",
-                \"organization\": \"${ORGANIZATION}\",
-                \"repo\": \"${REPO}\",
-                \"app\": \"${APP}\",
-                \"branch\": \"${BRANCH}\",
-                \"status\": \"${STATUS}\",
-        $([ -n "${TEXT}" ] && \
-        cat << EOF
-          "txt": "${TEXT}",
-        EOF)
-        $([ -n "${COLOR}" ] && \
-        cat << EOF
-          "color": "${COLOR}",
-        EOF)
-                \"update\": \"${TIME}\"}"
+      environment:
+        API_TOKEN: << parameters.api_token >>
+        ORGANIZATION: << parameters.organization >>
+        REPO: << parameters.repo >>
+        APP: << parameters.app >>
+        BRANCH: << parameters.branch >>
+        STATUS: << parameters.status >>
+        COLOR: << parameters.color >>
+        TEXT: << parameters.text >>
+      command: << include(scripts/create.sh) >>
+      # command: |
+      #   TIME=$(date '+%Y-%m-%d-%H-%M-%S')
+      #   if [ << parameters.status >> -eq "1" ]; then
+      #     STATUS="true"
+      #   else
+      #     STATUS="false"
+      #   fi
+      #   API_TOKEN=$(eval echo "\$<< parameters.api_token >>")
+      #   curl -X POST -H "Content-Type: application/json" \
+      #     https://badges.rhems-japan.com/api-update-badge \
+      #       -d "{\"api_token\": \"${API_TOKEN}\",
+      #           \"organization\": \"${ORGANIZATION}\",
+      #           \"repo\": \"${REPO}\",
+      #           \"app\": \"${APP}\",
+      #           \"branch\": \"${BRANCH}\",
+      #           \"status\": \"${STATUS}\",
+      #   $([ -n "${TEXT}" ] && \
+      #   cat << EOF
+      #     "txt": "${TEXT}",
+      #   EOF)
+      #   $([ -n "${COLOR}" ] && \
+      #   cat << EOF
+      #     "color": "${COLOR}",
+      #   EOF)
+      #           \"update\": \"${TIME}\"}"
   - add_ssh_keys:
       fingerprints:
       - <<parameters.ssh_key>>
