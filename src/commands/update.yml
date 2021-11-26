@@ -62,6 +62,7 @@ steps:
       command: |
         _update_readme=`(cat <<parameters.readme_path>> | sed "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g")`
         echo $_update_readme > <<parameters.readme_path>>
+        cat <<parameters.readme_path>>
   - run:
       name: git push
       command: |
