@@ -2,7 +2,7 @@ TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
 echo "[before] ${API_TOKEN}"
 
-API_TOKEN=$(eval echo "\$${API_TOKEN}")
+API_TOKEN=$(eval echo "\$$API_TOKEN")
 ORGANIZATION=$(eval echo "\$${ORGANIZATION}")
 REPO=$(eval echo "\$${REPO}")
 APP=$(eval echo "\$${APP}")
