@@ -10,4 +10,4 @@ COMMAND=$(curl -X POST -H 'Content-Type: application/json' \
                 'color': '$COLOR',
                 'txt': '$TEXT',
                 'update': '${TIME}'}")
-echo $COMMAND
+echo "$COMMAND"
