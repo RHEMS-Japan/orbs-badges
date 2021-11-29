@@ -12,28 +12,51 @@ _api_token=`eval echo "\$""${TOKEN}"`
 _org=`eval echo "${ORGANIZATION}"`
 _repo=`eval echo "${REPO}"`
 _branch=`eval echo "${BRANCH}"`
+_txt=`eval echo "${TEXT}"`
 
 
-curl -X POST -H "Content-Type: application/json" \
+HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
 -d "{\"api_token\": \"${_api_token}\",
-\"organization\": \"${_org}\",
-\"repo\": \"${_repo}\",
+\"organization\": \"${ORGANIZATION}\",
+\"repo\": \"${REPO}\",
 \"app\": \"${APP}\",
-\"branch\": \"${_branch}\",
+\"branch\": \"${BRANCH}\",
 \"status\": \"${STATUS}\",
-$([ -n "${TEXT}" ] && \
-cat << EOF
-"txt": "${TEXT}",
+$([ -n "${_txt}" ] && \
+     cat << EOF
+     "txt": "${_txt}",
 EOF
 )
 $([ -n "${COLOR}" ] && \
-cat << EOF
-"color": "${COLOR}",
+     cat << EOF
+     "color": "${COLOR}",
 EOF
 )
-\"update\": \"${_time}\"}"
+\"update\": \"${TIME}\"}")
+echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
+# Responses other than 200 end with an error.
+[ ${HTTP_RESPONSE} != 200 ] && exit 1
 
+# curl -X POST -H "Content-Type: application/json" \
+# https://badges.rhems-japan.com/api-update-badge \
+# -d "{\"api_token\": \"${_api_token}\",
+# \"organization\": \"${_org}\",
+# \"repo\": \"${_repo}\",
+# \"app\": \"${APP}\",
+# \"branch\": \"${_branch}\",
+# \"status\": \"${STATUS}\",
+# $([ -n "${_txt}" ] && \
+# cat << EOF
+# "txt": "${_txt}",
+# EOF
+# )
+# $([ -n "${COLOR}" ] && \
+# cat << EOF
+# "color": "${COLOR}",
+# EOF
+# )
+# \"update\": \"${_time}\"}"
 
 # curl -X POST -H "Content-Type: application/json" \
 #           https://badges.rhems-japan.com/api-update-badge \
