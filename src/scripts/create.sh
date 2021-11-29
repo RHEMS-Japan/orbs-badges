@@ -6,9 +6,9 @@ else
   STATUS="false"
 fi
 
-API_TOKEN=`eval echo "\$${TOKEN}"`
+_api_token=`eval echo "\$${TOKEN}"`
 
-echo "API_TOKEN ${API_TOKEN}"
+echo "API_TOKEN ${_api_token}"
 echo "ORGANIZATION ${ORGANIZATION}"
 echo "REPO ${REPO}"
 echo "APP ${APP}"
@@ -39,7 +39,7 @@ echo $TIME
 
 curl -X POST -H "Content-Type: application/json" \
   https://badges.rhems-japan.com/api-update-badge \
-  -d "{\"api_token\": \"${API_TOKEN}\",
+  -d "{\"api_token\": \"${_api_token}\",
                 \"organization\": \"${ORGANIZATION}\",
                 \"repo\": \"${REPO}\",
                 \"app\": \"${APP}\",
