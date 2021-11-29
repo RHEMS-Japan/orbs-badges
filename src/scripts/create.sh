@@ -13,7 +13,7 @@ STATUS=1
 COLOR=red
 TEXT=v3
 
-echo "API_TOKEN ${API_TOKEN}"
+echo "API_TOKEN ${TOKEN}"
 echo "ORGANIZATION ${ORGANIZATION}"
 echo "REPO ${REPO}"
 echo "APP ${APP}"

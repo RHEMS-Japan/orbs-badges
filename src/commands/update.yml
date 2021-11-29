@@ -43,7 +43,7 @@ steps:
   - run:
       name: Execute curl command
       environment:
-        API_TOKEN: << parameters.api_token >>
+        TOKEN: << parameters.api_token >>
         ORGANIZATION: << parameters.organization >>
         REPO: << parameters.repo >>
         APP: << parameters.app >>
