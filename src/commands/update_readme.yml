@@ -25,17 +25,14 @@ parameters:
 
 steps:
     - add_ssh_keys:
-        when: always
         fingerprints:
         - <<parameters.ssh_key>>
     - checkout
     - run:
-        when: always
         name: Readme update
         command: |
           sed -i -e "s#branch=.*\&cised=true.*#branch=<<parameters.branch>>\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g"  << parameters.file_path >>
     - run:
-        when: always
         name: git push
         command: |
           git config --global user.email << parameters.user_email >>
