@@ -23,33 +23,33 @@ echo "COLOR ${COLOR}"
 echo "TEXT ${TEXT}"
 echo $TIME
 
-# curl -X POST -H "Content-Type: application/json" \
-# https://badges.rhems-japan.com/api-update-badge \
-# -d "{\"api_token\": \"${API_TOKEN}\",
-# \"organization\": \"${ORGANIZATION}\",
-# \"repo\": \"${REPO}\",
-# \"app\": \"${APP}\",
-# \"branch\": \"${BRANCH}\",
-# \"status\": \"${STATUS}\",
-# $([ -n "${TEXT}" ] && \
-# cat << EOF
-# "txt": "${TEXT}",
-# EOF)
-# $([ -n "${COLOR}" ] && \
-# cat << EOF
-# "color": "${COLOR}",
-# EOF)
-# \"update\": \"${TIME}\"}"
-
-
 curl -X POST -H "Content-Type: application/json" \
-  https://badges.rhems-japan.com/api-update-badge \
-  -d "{\"api_token\": \"${<< parameters.api_token >>}\",
-                \"organization\": \"<< parameters.organization >>\",
-                \"repo\": \"<< parameters.repo >>\",
-                \"app\": \"<< parameters.app >>\",
-                \"branch\": \"<< parameters.branch >>\",
-                \"status\": \"${STATUS}\",
-                \"color\": \"${COLOR}\",
-                \"txt\": \"${TEXT}\",
-                \"update\": \"${TIME}\"}"
+https://badges.rhems-japan.com/api-update-badge \
+-d "{\"api_token\": \"${_api_token}\",
+\"organization\": \"${_org}\",
+\"repo\": \"${_repo}\",
+\"app\": \"${APP}\",
+\"branch\": \"${_branch}\",
+\"status\": \"${STATUS}\",
+$([ -n "${TEXT}" ] && \
+cat << EOF
+"txt": "${TEXT}",
+EOF)
+$([ -n "${COLOR}" ] && \
+cat << EOF
+"color": "${COLOR}",
+EOF)
+\"update\": \"${TIME}\"}"
+
+
+# curl -X POST -H "Content-Type: application/json" \
+#           https://badges.rhems-japan.com/api-update-badge \
+#            -d "{\"api_token\": \"${API_TOKEN}\",
+#                 \"organization\": \"${ORGANIZATION}\",
+#                 \"repo\": \"${REPO}\",
+#                 \"app\": \"${APP}\",
+#                 \"branch\": \"${BRANCH}\",
+#                 \"status\": \"${STATUS}\",
+#                 \"color\": \"${COLOR}\",
+#                 \"txt\": \"${TEXT}\",
+#                 \"update\": \"${TIME}\"}"
