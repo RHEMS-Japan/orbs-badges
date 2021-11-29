@@ -26,9 +26,9 @@ fi
 echo "--- debug ---"
 cat << EOS
 {
-"api_token": "`eval echo "\$""${TOKEN}"`",
-"organization": "`eval echo "${ORGANIZATION}"`",
-"repo": "`eval echo "${REPO}"`",
+"api_token": "${TOKEN},
+"organization": "${ORGANIZATION}",
+"repo": "${REPO},
 "app": "${APP}",
 "branch": "`eval echo "${BRANCH}"`",
 "status": "${STATUS}",
