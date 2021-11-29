@@ -57,7 +57,7 @@ EOF
 echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
 # [ ${HTTP_RESPONSE} -ne '200' ] && exit 1
-if [ ${HTTP_RESPONSE} -ne '200' ] then
+if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
 fi
 
