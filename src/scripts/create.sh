@@ -1,5 +1,7 @@
-_time=$(date '+%Y-%m-%d-%H-%M-%S')
-echo "export TIME=`echo ${_time}`" >> $BASH_ENV
+# _time=$(date '+%Y-%m-%d-%H-%M-%S')
+# echo "export TIME=`echo ${_time}`" >> $BASH_ENV
+
+TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
 if [ "${STATUS}" -eq "1" ]; then
   STATUS="true"
