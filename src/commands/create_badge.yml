@@ -44,6 +44,12 @@ parameters:
 
 steps:
   - run:
+      name: parameters check
+      command: |
+        if [ -n << parameters.status >> ]; then
+          echo 'status check'
+        fi
+  - run:
       name: Execute curl command
       environment:
         TOKEN: << parameters.api_token >>

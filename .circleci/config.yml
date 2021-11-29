@@ -34,7 +34,6 @@ jobs:
       # Push new changes first, before adding new tests to your config.
       - badges/create_badge:
           app: "orbs-badges"
-          status: true
           color: "red"
           text: $CIRCLE_BUILD_NUM
       - badges/update_readme:

@@ -8,7 +8,6 @@ else
 fi
 
 _api_token=`eval echo "\$""${TOKEN}"`
-# _api_token=`eval echo "\$${TOKEN}"`
 _org=`eval echo "${ORGANIZATION}"`
 _repo=`eval echo "${REPO}"`
 _branch=`eval echo "${BRANCH}"`
@@ -61,16 +60,3 @@ if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
   exit 1
 fi
-
-
-# curl -X POST -H "Content-Type: application/json" \
-#           https://badges.rhems-japan.com/api-update-badge \
-#            -d "{\"api_token\": \"${API_TOKEN}\",
-#                 \"organization\": \"${ORGANIZATION}\",
-#                 \"repo\": \"${REPO}\",
-#                 \"app\": \"${APP}\",
-#                 \"branch\": \"${BRANCH}\",
-#                 \"status\": \"${STATUS}\",
-#                 \"color\": \"${COLOR}\",
-#                 \"txt\": \"${TEXT}\",
-#                 \"update\": \"${TIME}\"}"
