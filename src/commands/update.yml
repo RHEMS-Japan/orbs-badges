@@ -66,7 +66,7 @@ steps:
         README_PATH: << parameters.readme_path >>
       command: |
         sed -i -e "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g"  << parameters.readme_path >>
-        sed -i -e "s#update=.*\&cised=true#update=${TIME}\&cised=true#g"  << parameters.readme_path >>
+        sed -i -e "s#update=.*\&cised=true\&#update=${TIME}\&cised=true\&#g"  << parameters.readme_path >>
   - run:
       name: git push
       command: |
