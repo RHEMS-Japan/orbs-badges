@@ -32,14 +32,14 @@ jobs:
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
-      # - badges/update:
-      #     # api_token: "${API_TOKEN}"
-      #     organization: ${CIRCLE_PROJECT_USERNAME}
-      #     app: "orb-badge-test"
-      #     status: true
-      #     # color: "red"
-      #     # text: "v${CIRCLE_BUILD_NUM}"
-      #     ssh_key: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/update:
+          # api_token: "${API_TOKEN}"
+          # organization: ${CIRCLE_PROJECT_USERNAME}
+          app: "orb-badge-test"
+          status: true
+          # color: "red"
+          # text: "v${CIRCLE_BUILD_NUM}"
+          ssh_key: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
