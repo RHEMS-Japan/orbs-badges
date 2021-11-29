@@ -78,6 +78,7 @@ fi
 update_readme () {
   echo "== run update_readme =="
   if [ -n  ${CIRCLE_BRANCH} ]; then
+    echo "--- run git ---"
     sed -i -e "s#branch=.*\&cised=true.*#branch=<<parameters.branch>>\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
     git config --global user.email ${USER_EMAL}
     git config --global user.name ${USER_NAME}
