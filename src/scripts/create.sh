@@ -44,11 +44,11 @@ echo $TIME
 
 curl -X POST -H "Content-Type: application/json" \
   https://badges.rhems-japan.com/api-update-badge \
-  -d "{\"api_token\": \"${_api_token}\",
-                \"organization\": \"${_org}\",
-                \"repo\": \"${_repo}\",
-                \"app\": \"${APP}\",
-                \"branch\": \"${_branch}\",
+  -d "{\"api_token\": \"${<< parameters.api_token >>}\",
+                \"organization\": \"${<< parameters.organization >>}\",
+                \"repo\": \"${<< parameters.repo >>}\",
+                \"app\": \"${<< parameters.app >>}\",
+                \"branch\": \"${<< parameters.branch >>}\",
                 \"status\": \"${STATUS}\",
                 \"color\": \"${COLOR}\",
                 \"txt\": \"${TEXT}\",
