@@ -34,11 +34,13 @@ https://badges.rhems-japan.com/api-update-badge \
 $([ -n "${TEXT}" ] && \
 cat << EOF
 "txt": "${TEXT}",
-EOF)
+EOF
+)
 $([ -n "${COLOR}" ] && \
 cat << EOF
 "color": "${COLOR}",
-EOF)
+EOF
+)
 \"update\": \"${TIME}\"}"
 
 
