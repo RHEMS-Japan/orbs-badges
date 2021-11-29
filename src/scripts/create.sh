@@ -14,6 +14,7 @@ echo "BRANCH ${BRANCH}"
 echo "STATUS ${STATUS}"
 echo "COLOR ${COLOR}"
 echo "TEXT ${TEXT}"
+echo $TIME
 
 curl -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \

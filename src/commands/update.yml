@@ -8,6 +8,7 @@ parameters:
     description: "The API Token of RHEMS BADGES. (Required)"
   organization:
     type: string
+    default: $CIRCLE_PROJECT_USERNAME
     description: "organization name (Required)"
   repo:
     type: string
