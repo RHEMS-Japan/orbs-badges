@@ -35,7 +35,7 @@ jobs:
       - badges/update:
           # api_token: "${API_TOKEN}"
           # organization: ${CIRCLE_PROJECT_USERNAME}
-          app: "orb-badge-test"
+          app: "orbs-badges"
           status: true
           # color: "red"
           # text: "v${CIRCLE_BUILD_NUM}"
