@@ -7,12 +7,15 @@ else
 fi
 
 _api_token=`eval echo "\$${TOKEN}"`
+_org=`eval echo "${ORGANIZATION}"`
+_repo=`eval echo "${REPO}"`
+_branch=`eval echo "${BRANCH}"`
 
 echo "API_TOKEN ${_api_token}"
-echo "ORGANIZATION ${ORGANIZATION}"
-echo "REPO ${REPO}"
+echo "ORGANIZATION ${_org}"
+echo "REPO ${_repo}"
 echo "APP ${APP}"
-echo "BRANCH ${BRANCH}"
+echo "BRANCH ${_branch}"
 echo "STATUS ${STATUS}"
 echo "COLOR ${COLOR}"
 echo "TEXT ${TEXT}"
@@ -40,10 +43,10 @@ echo $TIME
 curl -X POST -H "Content-Type: application/json" \
   https://badges.rhems-japan.com/api-update-badge \
   -d "{\"api_token\": \"${_api_token}\",
-                \"organization\": \"${ORGANIZATION}\",
-                \"repo\": \"${REPO}\",
+                \"organization\": \"${_org}\",
+                \"repo\": \"${_repo}\",
                 \"app\": \"${APP}\",
-                \"branch\": \"${BRANCH}\",
+                \"branch\": \"${_branch}\",
                 \"status\": \"${STATUS}\",
                 \"color\": \"${COLOR}\",
                 \"txt\": \"${TEXT}\",
