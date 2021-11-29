@@ -13,26 +13,28 @@ _repo=`eval echo "${REPO}"`
 _branch=`eval echo "${BRANCH}"`
 _txt=`eval echo "${TEXT}"`
 
-# curl -X POST -H "Content-Type: application/json" \
-# https://badges.rhems-japan.com/api-update-badge \
-# -d "{\"api_token\": \"${_api_token}\",
-# \"organization\": \"${_org}\",
-# \"repo\": \"${_repo}\",
-# \"app\": \"${APP}\",
-# \"branch\": \"${_branch}\",
-# \"status\": \"${STATUS}\",
-# $([ -n "${_txt}" ] && \
-# cat << EOF
-# "txt": "${_txt}",
-# EOF
-# )
-# $([ -n "${COLOR}" ] && \
-# cat << EOF
-# "color": "${COLOR}",
-# EOF
-# )
-# \"update\": \"${_time}\"}"
-
+########### debug
+echo "--- debug ---"
+cat << EOS
+{
+"api_token": "${_api_token}",
+"organization": "${ORGANIZATION}",
+"repo": "${REPO}",
+"app": "${APP}",
+"branch": "${BRANCH}",
+"status": "${STATUS}",
+`[ -n "${_txt}" ] && \
+cat << EOF
+"txt": "${_txt}",
+EOF`
+`[ -n "${COLOR}" ] && \
+cat << EOF
+"color": "${COLOR}",
+EOF`
+"update": "${TIME}"
+}
+EOS
+echo "--- debug ---"
 
 HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
