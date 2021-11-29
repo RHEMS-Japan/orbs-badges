@@ -6,6 +6,8 @@ else
   STATUS="false"
 fi
 
+echo "${TOKEN}"
+
 _api_token=`eval echo "\$${TOKEN}"`
 _org=`eval echo "${ORGANIZATION}"`
 _repo=`eval echo "${REPO}"`
