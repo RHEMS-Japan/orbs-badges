@@ -8,7 +8,8 @@ fi
 
 echo "${TOKEN}"
 
-_api_token=`eval echo "\$${TOKEN}"`
+_api_token=`eval echo "\$""${TOKEN}"`
+# _api_token=`eval echo "\$${TOKEN}"`
 _org=`eval echo "${ORGANIZATION}"`
 _repo=`eval echo "${REPO}"`
 _branch=`eval echo "${BRANCH}"`
@@ -26,10 +27,10 @@ _branch=`eval echo "${BRANCH}"`
 curl -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
 -d "{\"api_token\": \"${_api_token}\",
-\"organization\": \"${ORGANIZATION}\",
-\"repo\": \"${REPO}\",
+\"organization\": \"${_org}\",
+\"repo\": \"${_repo}\",
 \"app\": \"${APP}\",
-\"branch\": \"${BRANCH}\",
+\"branch\": \"${_branch}\",
 \"status\": \"${STATUS}\",
 $([ -n "${TEXT}" ] && \
 cat << EOF
