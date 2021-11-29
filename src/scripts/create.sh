@@ -57,8 +57,9 @@ EOF
 echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
 # [ ${HTTP_RESPONSE} -ne '200' ] && exit 1
-[ ${HTTP_RESPONSE} -ne '200' ] && echo 'not 200'
-
+if [ ${HTTP_RESPONSE} -ne '200' ] then
+  echo 'not 200'
+fi
 
 
 # curl -X POST -H "Content-Type: application/json" \
