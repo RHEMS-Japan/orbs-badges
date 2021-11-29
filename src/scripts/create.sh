@@ -56,6 +56,7 @@ EOF
 \"update\": \"${TIME}\"}")
 echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
+echo [ ${HTTP_RESPONSE} != 200 ]
 [ ${HTTP_RESPONSE} != 200 ] && exit 1
 
 
