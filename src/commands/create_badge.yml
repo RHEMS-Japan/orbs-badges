@@ -35,6 +35,12 @@ parameters:
     type: string
     default: ""
     description: "write text for right side (optional)"
+  event:
+    description: |
+      In what event should this message send? Options: ["fail", "pass", "always"]
+    type: enum
+    enum: ["fail", "pass", "always"]
+    default: "always"
   # ssh_key:
   #   type: string
   #   description: "fingerprints. (Required)"
@@ -44,13 +50,24 @@ parameters:
   #   description: "path of README.md"
 
 steps:
+  # - run:
+  #     name: parameters check
+  #     command: |
+  #       if [ -n << parameters.status >> ]; then
+  #         echo 'status check'
+  #       fi
   - run:
-      name: parameters check
+      when: on_fail
+      name: RHEMS BADGE - Detecting Job Status (FAIL)
       command: |
-        if [ -n << parameters.status >> ]; then
-          echo 'status check'
-        fi
+        echo 'export CCI_STATUS="fail"' > /tmp/RHEMS_JOB_STATUS
   - run:
+      when: on_success
+      name: RHEMS BADGE  - Detecting Job Status (PASS)
+      command: |
+        echo 'export CCI_STATUS="pass"' > /tmp/RHEMS_JOB_STATUS
+  - run:
+      when: always
       name: Execute curl command
       environment:
         TOKEN: << parameters.api_token >>

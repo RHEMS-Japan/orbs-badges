@@ -1,13 +1,9 @@
-# _time=$(date '+%Y-%m-%d-%H-%M-%S')
-# echo "export TIME=`echo ${_time}`" >> $BASH_ENV
-
 TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
-if [ "${STATUS}" -eq "1" ]; then
-  STATUS="true"
-else
-  STATUS="false"
-fi
+
+. "/tmp/RHEMS_JOB_STATUS"
+
+[ ${STATUS} ] || STATUS=false
 
 ### CHECK ENV
 [ "${TOKEN::1}" == '$' ] && TOKEN=`eval echo ${TOKEN}`
@@ -41,6 +37,7 @@ EOF`
 EOS
 env
 echo "--- debug ---"
+########### debug
 
 HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
