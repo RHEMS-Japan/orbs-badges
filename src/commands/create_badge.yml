@@ -50,12 +50,6 @@ parameters:
   #   description: "path of README.md"
 
 steps:
-  # - run:
-  #     name: parameters check
-  #     command: |
-  #       if [ -n << parameters.status >> ]; then
-  #         echo 'status check'
-  #       fi
   - run:
       when: on_fail
       name: RHEMS BADGE - Detecting Job Status (FAIL)

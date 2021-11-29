@@ -3,7 +3,7 @@ TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
 . "/tmp/RHEMS_JOB_STATUS"
 
-[ ${STATUS} ] || STATUS=false
+${STATUS} || STATUS=false
 
 ### CHECK ENV
 [ "${TOKEN::1}" == '$' ] && TOKEN=`eval echo ${TOKEN}`
@@ -15,6 +15,7 @@ TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
 
 ########### debug
+check_debug () {
 echo "--- debug ---"
 cat << EOS
 {
@@ -38,7 +39,9 @@ EOS
 env
 echo "--- debug ---"
 ########### debug
+}
 
+post_to_badgeserver () {
 echo "--- main ---"
 HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
@@ -70,4 +73,13 @@ echo "--- main ---"
 if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
   exit 1
+fi
+}
+
+################## ---- main
+check_debug
+if [ ! -n "${TEXT}" ]; then
+   post_to_badgeserver
+else
+  ${STATUS} && post_to_badgeserver
 fi
