@@ -59,6 +59,7 @@ echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # [ ${HTTP_RESPONSE} -ne '200' ] && exit 1
 if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
+  exit 1
 fi
 
 
