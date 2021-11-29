@@ -23,9 +23,9 @@ cat << EOS
 "app": "${APP}",
 "branch": "${_branch}",
 "status": "${STATUS}",
-`[ -n "${TEXT}" ] && \
+`[ -n "${_txt}" ] && \
 cat << EOF
-"txt": "${TEXT}",
+"txt": "${_txt}",
 EOF`
 `[ -n "${COLOR}" ] && \
 cat << EOF
@@ -42,10 +42,10 @@ https://badges.rhems-japan.com/api-update-badge \
 -d @- <<EOS
 {
 "api_token": "${_api_token}",
-"organization": "${ORGANIZATION}",
-"repo": "${REPO}",
+"organization": "${_org}",
+"repo": "${_repo}",
 "app": "${APP}",
-"branch": "${BRANCH}",
+"branch": "${_branch}",
 "status": "${STATUS}",
 `[ -n "${_txt}" ] && \
 cat << EOF
