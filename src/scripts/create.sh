@@ -78,12 +78,12 @@ fi
 update_readme () {
   echo "== run update_readme =="
   if [ -n "${CIRCLE_BRANCH}" ]; then
-    echo "--- run git ---"
     sed -i -e "s#branch=.*\&cised=true.*#branch=${CIRCLE_BRANCH}\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
     git config --global user.email ${USER_EMAL}
     git config --global user.name ${USER_NAME}
     git add ${FILE_PATH}
-    git commit -m '[skip ci] << parameters.file_path >> Update'
+    echo "--- run git ---"
+    git commit -m "[skip ci] ${FILE_PATH} Update"
     git push origin ${CIRCLE_BRANCH}
   fi
 }
