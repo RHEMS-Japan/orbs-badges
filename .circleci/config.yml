@@ -35,6 +35,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - setup_ssh_keys ## need this to update readme
       - checkout
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
@@ -43,7 +44,6 @@ jobs:
           name: test error
           command: |
               exit 1
-      - setup_ssh_keys ## need this to update readme
       - badges/create_badge
       # - badges/create_badge:
       #     app: "orbs-badges"
