@@ -1,5 +1,5 @@
 TIME=$(date '+%Y-%m-%d-%H-%M-%S')
-<< parameters.time >>=$TIME
+export TIME
 
 if [ "${STATUS}" -eq "1" ]; then
   STATUS="true"
