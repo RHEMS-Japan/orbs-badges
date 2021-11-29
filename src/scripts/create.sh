@@ -36,7 +36,7 @@ EOF`
 "update": "${TIME}"
 }
 EOS
-env
+# env
 echo "--- debug ---"
 ########### debug
 }
@@ -68,7 +68,6 @@ EOS
 echo "--- main ---"
 echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
-# [ ${HTTP_RESPONSE} -ne '200' ] && exit 1
 
 if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'

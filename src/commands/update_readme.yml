@@ -25,6 +25,7 @@ parameters:
 
 steps:
     - add_ssh_keys:
+        when: always
         fingerprints:
         - <<parameters.ssh_key>>
     - checkout
