@@ -1,5 +1,5 @@
-TIME=$(date '+%Y-%m-%d-%H-%M-%S')
-export TIME
+_time=$(date '+%Y-%m-%d-%H-%M-%S')
+echo "export TIME=`echo ${_time}`" >> $BASH_ENV
 
 if [ "${STATUS}" -eq "1" ]; then
   STATUS="true"
@@ -32,7 +32,7 @@ cat << EOF
 "color": "${COLOR}",
 EOF
 )
-\"update\": \"${TIME}\"}"
+\"update\": \"${_time}\"}"
 
 
 # curl -X POST -H "Content-Type: application/json" \
