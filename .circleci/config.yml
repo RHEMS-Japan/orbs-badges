@@ -35,8 +35,10 @@ jobs:
       - run:
           name: test error
           command: |
-              exit 1  
-      - badges/create_badge
+              exit 1
+      - badges/create_badge:
+          event: fail
+          status: false
       # - badges/create_badge:
       #     app: "orbs-badges"
       #     color: "red"
