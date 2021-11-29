@@ -49,6 +49,7 @@ jobs:
           app: "orbs-badges"
           color: "blue"
           text: $CIRCLE_BUILD_NUM
+      - badges/update_readme
 
 
 

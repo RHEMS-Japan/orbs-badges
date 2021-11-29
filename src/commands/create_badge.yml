@@ -79,4 +79,4 @@ steps:
         GIT_USER_EMAIL: << parameters.user_email >>
         FILE_PATH: << parameters.file_path >>
         UPDATE_README: << parameters.update_readme >>
-      command: << include(scripts/create.sh) >>
+      command: << include(scripts/create_badge.sh) >>
