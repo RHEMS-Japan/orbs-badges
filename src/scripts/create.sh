@@ -39,6 +39,7 @@ env
 echo "--- debug ---"
 ########### debug
 
+echo "--- main ---"
 HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
 -d @- <<EOS
@@ -61,7 +62,7 @@ EOF`
 }
 EOS
 )
-
+echo "--- main ---"
 # echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
 # [ ${HTTP_RESPONSE} -ne '200' ] && exit 1
