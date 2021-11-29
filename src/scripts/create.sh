@@ -23,7 +23,7 @@ cat << EOS
 "repo": "${REPO}",
 "app": "${APP}",
 "branch": "${BRANCH}",
-"status": "${STATUS}",
+"status": ${STATUS},
 `[ -n "${TEXT}" ] && \
 cat << EOF
 "txt": "${TEXT}",
@@ -48,7 +48,7 @@ https://badges.rhems-japan.com/api-update-badge \
 "repo": "${REPO}",
 "app": "${APP}",
 "branch": "${BRANCH}",
-"status": "${STATUS}",
+"status": ${STATUS},
 `[ -n "${TEXT}" ] && \
 cat << EOF
 "txt": "${TEXT}",
