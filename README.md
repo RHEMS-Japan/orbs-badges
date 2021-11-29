@@ -2,7 +2,7 @@
 
 [![CircleCI Build Status](https://circleci.com/gh/RHEMS-Japan/orbs-badges.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/RHEMS-Japan/orbs-badges) [![CircleCI Orb Version](https://badges.circleci.com/orbs/rhems-japan/badges.svg)](https://circleci.com/orbs/registry/orb/rhems-japan/badges) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/RHEMS-Japan/orbs-badges/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&update=2021-11-29-10-04-50&cised=true&branch=alpha&cised=true)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true)
 
 A starter template for orb projects. Build, test, and publish orbs automatically on CircleCI with [Orb-Tools](https://circleci.com/orbs/registry/orb/circleci/orb-tools).
 
@@ -38,4 +38,3 @@ Example: `[semver:major]`
 
 
 For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs).
-
