@@ -21,7 +21,7 @@ fi
 echo "--- debug ---"
 cat << EOS
 {
-"api_token": "${TOKEN},
+"api_token": "${TOKEN}",
 "organization": "${ORGANIZATION}",
 "repo": "${REPO},
 "app": "${APP}",
@@ -45,7 +45,7 @@ HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST 
 https://badges.rhems-japan.com/api-update-badge \
 -d @- <<EOS
 {
-"api_token": "${TOKEN},
+"api_token": "${TOKEN}",
 "organization": "${ORGANIZATION}",
 "repo": "${REPO},
 "app": "${APP}",
