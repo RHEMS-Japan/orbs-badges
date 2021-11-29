@@ -86,7 +86,7 @@ steps:
       environment:
         README_PATH: << parameters.readme_path >>
       command: |
-        _update_readme=`(cat << parameters.readme_path >> | sed "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g")`
+        _update_readme=`(cat << parameters.readme_path >> | sed -i -e "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g")`
         echo $_update_readme > << parameters.readme_path >>
         cat << parameters.readme_path >>
   - run:
