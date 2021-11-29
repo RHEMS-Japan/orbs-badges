@@ -20,8 +20,8 @@ parameters:
     default: $CIRCLE_PROJECT_REPONAME
     description: "app name (Required)"
   status:
-    type: boolean
-    default: true
+    type: string
+    default: "true"
     description: "set status true or false. (Required)"
   branch:
     type: string
@@ -36,8 +36,8 @@ parameters:
     default: ""
     description: "write text for right side (optional)"
   update_readme:
-    type: boolean
-    default: true
+    type: string
+    default: "true"
     description: "set true or false to update readme"
   file_path:
     type: string
