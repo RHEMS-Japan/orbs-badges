@@ -17,7 +17,7 @@ parameters:
     description: "if repo is empty it will use ${CIRCLE_PROJECT_REPONAME} (optional)"
   app:
     type: string
-    default: ""
+    default: $CIRCLE_PROJECT_REPONAME
     description: "app name (Required)"
   status:
     type: boolean

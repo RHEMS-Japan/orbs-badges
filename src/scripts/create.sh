@@ -7,20 +7,13 @@ else
   STATUS="false"
 fi
 
-# _api_token=`eval echo "\$""${TOKEN}"`
-# _org=`eval echo "${ORGANIZATION}"`
-# _repo=`eval echo "${REPO}"`
-# _branch=`eval echo "${BRANCH}"`
 [ "${TOKEN::1}" == '$' ] && TOKEN=`eval echo ${TOKEN}`
 [ "${ORGANIZATION::1}" == '$' ] && ORGANIZATION=`eval echo ${ORGANIZATION}`
 [ "${REPO::1}" == '$' ] && REPO=`eval echo ${REPO}`
 [ "${BRANCH::1}" == '$' ] && BRANCH=`eval echo ${BRANCH}`
 [ "${TEXT::1}" == '$' ] && TEXT=`eval echo ${TEXT}`
-#
-# set_env (){
-#
-# }
-# _txt=`eval echo "${TEXT}"`
+[ "${APP::1}" == '$' ] && APP=`eval echo ${APP}`
+
 
 ########### debug
 echo "--- debug ---"
@@ -50,15 +43,15 @@ HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST 
 https://badges.rhems-japan.com/api-update-badge \
 -d @- <<EOS
 {
-"api_token": "${_api_token}",
-"organization": "${_org}",
-"repo": "${_repo}",
+"api_token": "${TOKEN},
+"organization": "${ORGANIZATION}",
+"repo": "${REPO},
 "app": "${APP}",
-"branch": "${_branch}",
+"branch": "`eval echo "${BRANCH}"`",
 "status": "${STATUS}",
-`[ -n "${_txt}" ] && \
+`[ -n "${TEXT}" ] && \
 cat << EOF
-"txt": "${_txt}",
+"txt": "${TEXT}",
 EOF`
 `[ -n "${COLOR}" ] && \
 cat << EOF
