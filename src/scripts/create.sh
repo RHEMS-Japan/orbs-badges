@@ -55,6 +55,7 @@ EOF`
 "update": "${TIME}"
 }
 EOS
+)
 
 
 
