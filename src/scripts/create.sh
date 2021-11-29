@@ -36,7 +36,7 @@ EOF
 \"update\": \"${TIME}\"}")
 echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
-[ ${HTTP_RESPONSE} != 200 ] && exit 1
+[ ${HTTP_RESPONSE} != "200" ] && exit 1
 
 # curl -X POST -H "Content-Type: application/json" \
 # https://badges.rhems-japan.com/api-update-badge \
