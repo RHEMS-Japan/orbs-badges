@@ -7,25 +7,34 @@ else
   STATUS="false"
 fi
 
-_api_token=`eval echo "\$""${TOKEN}"`
-_org=`eval echo "${ORGANIZATION}"`
-_repo=`eval echo "${REPO}"`
-_branch=`eval echo "${BRANCH}"`
-_txt=`eval echo "${TEXT}"`
+# _api_token=`eval echo "\$""${TOKEN}"`
+# _org=`eval echo "${ORGANIZATION}"`
+# _repo=`eval echo "${REPO}"`
+# _branch=`eval echo "${BRANCH}"`
+[ "${TOKEN::1}" == '$' ] && TOKEN=`eval echo ${TOKEN}`
+[ "${ORGANIZATION::1}" == '$' ] && ORGANIZATION=`eval echo ${ORGANIZATION}`
+[ "${REPO::1}" == '$' ] && REPO=`eval echo ${REPO}`
+[ "${BRANCH::1}" == '$' ] && BRANCH=`eval echo ${BRANCH}`
+[ "${TEXT::1}" == '$' ] && TEXT=`eval echo ${TEXT}`
+#
+# set_env (){
+#
+# }
+# _txt=`eval echo "${TEXT}"`
 
 ########### debug
 echo "--- debug ---"
 cat << EOS
 {
 "api_token": "`eval echo "\$""${TOKEN}"`",
-"organization": "${_org}",
-"repo": "${_repo}",
+"organization": "`eval echo "${ORGANIZATION}"`",
+"repo": "`eval echo "${REPO}"`",
 "app": "${APP}",
-"branch": "${_branch}",
+"branch": "`eval echo "${BRANCH}"`",
 "status": "${STATUS}",
-`[ -n "${_txt}" ] && \
+`[ -n "${TEXT}" ] && \
 cat << EOF
-"txt": "${_txt}",
+"txt": "${TEXT}",
 EOF`
 `[ -n "${COLOR}" ] && \
 cat << EOF
