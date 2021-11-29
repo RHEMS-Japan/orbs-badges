@@ -1,4 +1,4 @@
-TIME=$(date '+%Y-%m-%d-%H-%M-%S')
+TIME=$(date '+%Y/%m/%d %H:%M:%S')
 
 
 . "/tmp/RHEMS_JOB_STATUS"
