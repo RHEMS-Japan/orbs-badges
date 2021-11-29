@@ -30,7 +30,7 @@ steps:
   - run:
       name: Readme update
       command: |
-        sed -i -e "s#branch=.*\&cised=true.*#branch=test\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")#g"  << parameters.file_path >>
+        sed -i -e "s#branch=.*\&cised=true.*#branch=test\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g"  << parameters.file_path >>
         # sed -i -e "s#branch=.*\&cised=true#branch=<<parameters.branch>>\&cised=true#g"  << parameters.file_path >>
         # sed -i -e "s#update=.*\&cised=true\&#update=${TIME}\&cised=true\&#g"  << parameters.file_path >>
   - run:
