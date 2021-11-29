@@ -18,14 +18,14 @@ echo "--- debug ---"
 cat << EOS
 {
 "api_token": "${_api_token}",
-"organization": "${ORGANIZATION}",
-"repo": "${REPO}",
+"organization": "${_org}",
+"repo": "${_repo}",
 "app": "${APP}",
-"branch": "${BRANCH}",
+"branch": "${_branch}",
 "status": "${STATUS}",
-`[ -n "${_txt}" ] && \
+`[ -n "${TEXT}" ] && \
 cat << EOF
-"txt": "${_txt}",
+"txt": "${TEXT}",
 EOF`
 `[ -n "${COLOR}" ] && \
 cat << EOF
@@ -34,6 +34,7 @@ EOF`
 "update": "${TIME}"
 }
 EOS
+env
 echo "--- debug ---"
 
 HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST -H "Content-Type: application/json" \
