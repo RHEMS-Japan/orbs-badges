@@ -36,7 +36,7 @@ EOF`
 "update": "${TIME}"
 }
 EOS
-# env
+env
 echo "--- debug ---"
 ########### debug
 }
