@@ -9,6 +9,7 @@ else
   STATUS="false"
 fi
 
+### CHECK ENV
 [ "${TOKEN::1}" == '$' ] && TOKEN=`eval echo ${TOKEN}`
 [ "${ORGANIZATION::1}" == '$' ] && ORGANIZATION=`eval echo ${ORGANIZATION}`
 [ "${REPO::1}" == '$' ] && REPO=`eval echo ${REPO}`
@@ -64,28 +65,10 @@ EOF`
 EOS
 )
 
-
-
-# -d "{\"api_token\": \"${_api_token}\",
-# \"organization\": \"${ORGANIZATION}\",
-# \"repo\": \"${REPO}\",
-# \"app\": \"${APP}\",
-# \"branch\": \"${BRANCH}\",
-# \"status\": \"${STATUS}\",
-# $([ -n "${_txt}" ] && \
-#      cat << EOF
-#      "txt": "${_txt}",
-# EOF
-# )
-# $([ -n "${COLOR}" ] && \
-#      cat << EOF
-#      "color": "${COLOR}",
-# EOF
-# )
-# \"update\": \"${TIME}\"}")
-echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
+# echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
 # [ ${HTTP_RESPONSE} -ne '200' ] && exit 1
+
 if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
   exit 1
