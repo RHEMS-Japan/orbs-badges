@@ -16,6 +16,7 @@ parameters:
     description: "if repo is empty it will use ${CIRCLE_PROJECT_REPONAME} (optional)"
   app:
     type: string
+    default: ""
     description: "app name (Required)"
   status:
     type: boolean
@@ -27,9 +28,11 @@ parameters:
     description: "if branche is empty it will use ${CIRCLE_BRANCH} (optional)"
   color:
     type: string
+    default: ""
     description: "you can set color (optional)"
   text:
     type: string
+    default: ""
     description: "write text for right side (optional)"
   ssh_key:
     type: string
