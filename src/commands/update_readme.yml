@@ -22,7 +22,7 @@ parameters:
 steps:
   - run:
       when: always
-      name: Execute curl command
+      name: update README
       environment:
         GIT_USER_NAME: << parameters.user_name >>
         GIT_USER_EMAIL: << parameters.user_email >>
