@@ -17,7 +17,7 @@ _txt=`eval echo "${TEXT}"`
 echo "--- debug ---"
 cat << EOS
 {
-"api_token": "${_api_token}",
+"api_token": "${TOKEN}",
 "organization": "${_org}",
 "repo": "${_repo}",
 "app": "${APP}",
