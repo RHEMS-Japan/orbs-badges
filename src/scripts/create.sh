@@ -25,7 +25,7 @@ _branch=`eval echo "${BRANCH}"`
 
 curl -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
--d "{\"api_token\": \"${TOKEN}\",
+-d "{\"api_token\": \"${_api_token}\",
 \"organization\": \"${ORGANIZATION}\",
 \"repo\": \"${REPO}\",
 \"app\": \"${APP}\",
