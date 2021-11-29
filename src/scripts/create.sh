@@ -65,14 +65,25 @@ EOF`
 }
 EOS
 )
+echo "HTTP_RESPONSE=${HTTP_RESPONSE} - ${STATUS}"
 echo "--- main ---"
-echo "HTTP_RESPONSE=${HTTP_RESPONSE}"
 # Responses other than 200 end with an error.
 
 if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
   exit 1
 fi
+}
+
+update_readme () {
+  if [ ! -n  ${CIRCLE_BRANCH} ]; then
+    sed -i -e "s#branch=.*\&cised=true.*#branch=<<parameters.branch>>\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
+    git config --global user.email ${USER_EMAL}
+    git config --global user.name ${USER_NAME}
+    git add ${FILE_PATH}
+    git commit -m '[skip ci] << parameters.file_path >> Update'
+    git push origin ${CIRCLE_BRANCH}
+  fi
 }
 
 ################## ---- main
@@ -82,3 +93,5 @@ if [ ! -n "${TEXT}" ]; then
 else
   ${STATUS} && post_to_badgeserver
 fi
+
+${UPDATE_README} && update_readme

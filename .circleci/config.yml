@@ -22,6 +22,12 @@ parameters:
     type: string
     default: "dev:alpha"
 
+setup_ssh_keys:
+  steps:
+    - add_ssh_keys:
+        fingerprints:
+        - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+
 jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
   integration-test-1:
@@ -36,13 +42,13 @@ jobs:
           name: test error
           command: |
               exit 1
+      - setup_ssh_keys ## need this to update readme
       - badges/create_badge
       # - badges/create_badge:
       #     app: "orbs-badges"
       #     color: "red"
       #     text: $CIRCLE_BUILD_NUM
-      - badges/update_readme:
-          ssh_key: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      # - badges/update_readme:
 
 
 workflows:
