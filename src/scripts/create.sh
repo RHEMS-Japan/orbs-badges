@@ -5,6 +5,13 @@ if [ "${STATUS}" -eq "1" ]; then
 else
   STATUS="false"
 fi
+ORGANIZATION=RHEMS-Japan
+REPO=orbs-badges
+APP=orbs-badges
+BRANCH=alpha
+STATUS=1
+COLOR=red
+TEXT=v3
 
 echo "API_TOKEN ${API_TOKEN}"
 echo "ORGANIZATION ${ORGANIZATION}"
