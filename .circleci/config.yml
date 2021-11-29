@@ -47,7 +47,7 @@ jobs:
       ## custom user_id
       - badges/create_badge:
           app: "orbs-badges"
-          color: "red"
+          color: "blue"
           text: $CIRCLE_BUILD_NUM
 
 
