@@ -37,8 +37,8 @@ jobs:
           # organization: ${CIRCLE_PROJECT_USERNAME}
           app: "orbs-badges"
           status: true
-          # color: "red"
-          # text: "v${CIRCLE_BUILD_NUM}"
+          color: "red"
+          text: "v${CIRCLE_BUILD_NUM}"
           ssh_key: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
 
 workflows:
