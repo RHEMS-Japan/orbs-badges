@@ -39,7 +39,7 @@ First, it's a good idea to run curl once to generate any badges.
 
 The URL format of the image has the following structure.
 
-https://badges.rhems-japan.com/api-get-badge.svg?user_id=`user id`&`timedelta=9`&organization=`organization name`&repo=`repository name`&app=`app name`&branch=alpha&cised=true&update=`update date`
+`https`://badges.rhems-japan.com/api-get-badge.svg?user_id=`user id`&`timedelta=9`&organization=`organization name`&repo=`repository name`&app=`app name`&branch=alpha&cised=true&update=`update date`
 
 |param|description|
 |:---:|:---|
