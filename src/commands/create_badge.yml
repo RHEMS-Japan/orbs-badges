@@ -3,7 +3,6 @@ description: >
 
 parameters:
   api_token:
-    #type: env_var_name
     type: string
     default: $API_TOKEN
     description: "The API Token of RHEMS BADGES. (Required)"
@@ -35,22 +34,6 @@ parameters:
     type: string
     default: ""
     description: "write text for right side (optional)"
-  # update_readme:
-  #   type: string
-  #   default: "true"
-  #   description: "set true or false to update readme"
-  # file_path:
-  #   type: string
-  #   default: ./README.md
-  #   description: "path of README.md"
-  # user_name:
-  #   type: string
-  #   default: "badge auto update"
-  #   description: "GitHub user.name"
-  # user_email:
-  #   type: string
-  #   default: "badges@rhems-japan.co.jp"
-  #   description: "GitHub user.email"
 
 steps:
   - run:
@@ -76,8 +59,3 @@ steps:
         COLOR: << parameters.color >>
         TEXT: << parameters.text >>
       command: << include(scripts/create_badge.sh) >>
-
-        # GIT_USER_NAME: << parameters.user_name >>
-        # GIT_USER_EMAIL: << parameters.user_email >>
-        # FILE_PATH: << parameters.file_path >>
-        # UPDATE_README: << parameters.update_readme >>
