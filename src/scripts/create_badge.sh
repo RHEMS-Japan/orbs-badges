@@ -76,7 +76,7 @@ fi
 }
 
 ################## ---- main
-# check_debug
+check_debug
 if [ ! -n "${TEXT}" ]; then
    post_to_badgeserver
 else
