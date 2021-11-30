@@ -58,11 +58,11 @@ steps:
       name: RHEMS BADGE - Detecting Job Status (FAIL)
       command: |
         echo 'export STATUS=false' > /tmp/RHEMS_JOB_STATUS
-  # - run:
-  #     when: on_success
-  #     name: RHEMS BADGE  - Detecting Job Status (PASS)
-  #     command: |
-  #       echo 'export STATUS=true' > /tmp/RHEMS_JOB_STATUS
+  - run:
+      when: on_success
+      name: RHEMS BADGE  - Detecting Job Status (PASS)
+      command: |
+        echo 'export STATUS=${STATUS}' > /tmp/RHEMS_JOB_STATUS
   - run:
       when: always
       name: update rhems badge
