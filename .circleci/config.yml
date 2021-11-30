@@ -47,9 +47,10 @@ jobs:
       ## custom user_id
       - badges/create_badge:
           app: "orbs-badges"
-          status: "false"
-          color: blue
-          text: $CIRCLE_BUILD_NUM
+          status: "true"
+          color: "#18c91e"
+          # text: $CIRCLE_BUILD_NUM
+          text: v1
       - badges/update_readme
 
 
