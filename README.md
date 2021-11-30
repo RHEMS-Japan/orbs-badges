@@ -6,6 +6,8 @@
 
 ![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&timedelta=9&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211130-015125)
 
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211130-015125)
+
 A starter template for orb projects. Build, test, and publish orbs automatically on CircleCI with [Orb-Tools](https://circleci.com/orbs/registry/orb/circleci/orb-tools).
 
 Additional READMEs are available in each directory.
