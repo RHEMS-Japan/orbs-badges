@@ -50,8 +50,7 @@ jobs:
       #     status: "true"
       #     color: "#18c91e"
       #     text: $CIRCLE_BUILD_NUM
-      - badges/update_readme:
-          file_path: "tmp/README.md"
+      - badges/update_readme
 
 
 

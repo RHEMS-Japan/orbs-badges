@@ -1,44 +1,108 @@
-# Orb Project Template
+# Orbs-badges
 
-[![CircleCI Build Status](https://circleci.com/gh/RHEMS-Japan/orbs-badges.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/RHEMS-Japan/orbs-badges)
- <!-- [![CircleCI Orb Version](https://badges.circleci.com/orbs/rhems-japan/badges.svg)](https://circleci.com/orbs/registry/orb/rhems-japan/badges) -->
-  [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/RHEMS-Japan/orbs-badges/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+## Easily generate and update ReadMe badges 
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&timedelta=9&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211130-032117)
+
+This orb creates a badge that looks like this:
 
 ![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211130-032117)
 
-A starter template for orb projects. Build, test, and publish orbs automatically on CircleCI with [Orb-Tools](https://circleci.com/orbs/registry/orb/circleci/orb-tools).
-
-Additional READMEs are available in each directory.
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&timedelta=9&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211130-032117)
 
 
+This orb has the following functions.
 
-## Resources
+- Immediately reflect the results of CircleCi jobs on the badge.
+- You can instantly embed the latest badge you created in the ReadMe.
+- If you embed `timedelta = X` in the URL described in the ReadMe, you can embed the time stamp in the badge.
+- In addition to CircleCi's job status, you can also put your favorite character string (for example, version number).
 
-[CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/rhems-japan/orbs-badges) - The official registry page of this orb for all versions, executors, commands, and jobs described.
-[CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using and creating CircleCI Orbs.
+## How to Use ?
 
-### How to Contribute
+### 1. Sign in to RHEMS BADGES
 
-We welcome [issues](https://github.com/RHEMS-Japan/orbs-badges/issues) to and [pull requests](https://github.com/RHEMS-Japan/orbs-badges/pulls) against this repository!
+[RHEMS BADGES](https://badges.rhems-japan.com/)
 
-### How to Publish
-* Create and push a branch with your new features.
-* When ready to publish a new production version, create a Pull Request from _feature branch_ to `master`.
-* The title of the pull request must contain a special semver tag: `[semver:<segment>]` where `<segment>` is replaced by one of the following values.
+Sign in using your github account.
 
-| Increment | Description|
-| ----------| -----------|
-| major     | Issue a 1.0.0 incremented release|
-| minor     | Issue a x.1.0 incremented release|
-| patch     | Issue a x.x.1 incremented release|
-| skip      | Do not issue a release|
+<img src="images/image01.png" width="300px">
 
-Example: `[semver:major]`
+### 2. Check `user id` and` api token`
 
-* Squash and merge. Ensure the semver tag is preserved and entered as a part of the commit message.
-* On merge, after manual approval, the orb will automatically be published to the Orb Registry.
+The `user id` and` api token` are displayed.
+- `api token`: Required when creating a badge.
+- `user id`: Required for badge display.
+
+### 3. Write the URL anywhere in the README
+
+First, it's a good idea to run curl once to generate any badges.
+
+The URL format of the image has the following structure.
+
+https://badges.rhems-japan.com/api-get-badge.svg?user_id=`user id`&`timedelta=9`&organization=`organization name`&repo=`repository name`&app=`app name`&branch=`branch name`&cised=true&update=`update date`
+
+|param|description|
+|:---:|:---|
+|`user id`|User ID obtained from "RHEMS badge"|
+|`organization name of github`|Organization name of github. orb will automatically use the organization name of the repository in use if you are not doing anything|
+|`repository name`|orb will automatically use the repository name in use if you haven't done anything in particular.|
+|`app name`|The string on the left side of the badge.|
+|`update date`|It is a time stamp automatically given by the application side.|
+|`timedelta=X`|(option) If included, the badge will be given the time in the specified time zone.|
+
+### 4. Prepare ssh key.
+
+This orb has a function to rewrite README and `git push` in CircleCi job. Therefore, it is necessary to generate an ssh key with write permission in advance and register it in GitHub and CircleCi respectively.
+
+#### 1. Create an ssh key
+
+Use the `ssh keygen` command to generate a public / private key.
+
+#### 2. Register your public key in the GitHub repository
+
+- Open the `Setting` of your repository.
+- Select `Deploy keys` from the menu on the left.
+- Select `add deploy key`, copy and paste the contents of the public key (.pub) to Title with any name and Key.
+- Check `Allow write access` and select `Add key`.
+
+#### 3. Register your private key with your CircleCi project
+
+- Open the `Project Settings` of your CircleCi project.
+- Select `SSH Keys` from the menu on the left.
+- Select `Add SSH Keys` under `Additional SSH Keys`.
+- Paste all the contents of the private key you generated earlier into the Hostname, `github.com`, and the Private Key.
+- Confirm that `Fingerprint` is displayed after registering the private key.
 
 
-For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs).
+### 5. How to write `.circleci/config.yml`
+
+Please specify the latest version of orb as much as possible.
+
+```yml
+  version: 2.1
+  orbs:
+    badges: rhems-japan/badges@x.y.z
+```
+
+Before calling this orb command, call the command to add the `ssh key` mentioned above.
+For `fingerprints`, enter the character string confirmed earlier.
+
+```yml
+commands:
+  setup_ssh_keys:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+          - "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
+          
+jobs:
+  job_name:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - setup_ssh_keys
+      - checkout
+      - badges/create_badge
+      - badges/update_readme
+```
+
