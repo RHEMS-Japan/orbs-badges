@@ -38,10 +38,10 @@ jobs:
       - setup_ssh_keys ## need this to update readme set is as first
       - checkout
       # test for error
-      - run:
-          name: test error
-          command: |
-              exit 1
+      # - run:
+      #     name: test error
+      #     command: |
+      #         exit 1
       ## normal use
       - badges/create_badge
       ## custom user_id
@@ -50,7 +50,8 @@ jobs:
       #     status: "true"
       #     color: "#18c91e"
       #     text: $CIRCLE_BUILD_NUM
-      - badges/update_readme
+      - badges/update_readme:
+          file_path: "tmp/README.md"
 
 
 
