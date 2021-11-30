@@ -52,8 +52,6 @@ jobs:
       #     text: $CIRCLE_BUILD_NUM
       - badges/update_readme
 
-
-
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
   # This workflow will run on every commit
