@@ -37,11 +37,11 @@ jobs:
     steps:
       - setup_ssh_keys ## need this to update readme set is as first
       - checkout
-      ## test for error
-      # - run:
-      #     name: test error
-      #     command: |
-      #         exit 1
+      # test for error
+      - run:
+          name: test error
+          command: |
+              exit 1
       ## normal use
       - badges/create_badge
       ## custom user_id
