@@ -43,14 +43,14 @@ jobs:
       #     command: |
       #         exit 1
       ## normal use
-      - badges/create_badge
+      # - badges/create_badge
       ## custom user_id
       # - badges/create_badge:
       #     app: "orbs-badges"
       #     status: "true"
       #     color: "#18c91e"
       #     text: $CIRCLE_BUILD_NUM
-      - badges/update_readme
+      # - badges/update_readme
 
 
 
