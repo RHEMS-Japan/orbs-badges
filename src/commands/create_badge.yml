@@ -19,9 +19,13 @@ parameters:
     default: $CIRCLE_PROJECT_REPONAME
     description: "app name (Required)"
   status:
-    type: string
+    type: enum
     default: "true"
-    description: "set status true or false. (Required)"
+    description: |
+        set status true or false. (Required. "true" or "false")
+    enum:
+        - "true"
+        - "false"
   branch:
     type: string
     default: $CIRCLE_BRANCH
