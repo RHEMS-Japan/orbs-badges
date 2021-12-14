@@ -9,6 +9,9 @@ This orb creates a badge that looks like this:
 
 ![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&timedelta=9&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211214-070341)
 
+test
+
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=SuXRjLryiXUnKMsqxKYMqFfpS6t2&timedelta=9&organization=RHEMS-Japan&repo=orbs-badges&app=orbs-badges&branch=beta&cised=true)
 
 This orb has the following functions.
 
