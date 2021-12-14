@@ -28,7 +28,8 @@ steps:
       when: << parameters.checkout >>
       name: CheckOut
       run: 
-        checkout
+        steps:
+          checkout
   - run:
       when: always
       name: update README
