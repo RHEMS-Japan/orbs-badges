@@ -36,15 +36,15 @@ jobs:
       - image: cimg/base:stable
     steps:
       # - setup_ssh_keys ## need this to update readme set is as first
-      # - checkout
+      - checkout
       # test for error
       # - run:
       #     name: test error
       #     command: |
       #         exit 1
       ## normal use
-      - badges/create_badge:
-          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      # - badges/create_badge:
+          # fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
       ## custom user_id
       # - badges/create_badge:
       #     app: "orbs-badges"
@@ -53,7 +53,7 @@ jobs:
       #     text: $CIRCLE_BUILD_NUM
       #     branch: "alpha"
       #     only_date: false
-      - badges/update_readme
+      # - badges/update_readme
 
 
 
@@ -95,13 +95,13 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - badges/create_badge:
-          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      - badges/update_readme:
-          requires:
-            - badges/create_badge
+      # - badges/create_badge
+      # - badges/update_readme:
+          # fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+          # requires:
+            # - badges/create_badge
       # Run any integration tests defined within the `jobs` key.
-      # - integration-test-1
+      - integration-test-1
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
@@ -115,8 +115,8 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:
-            # - integration-test-1
-            - badges/update_readme
+            - integration-test-1
+            # - badges/update_readme
           filters:
             branches:
               only:

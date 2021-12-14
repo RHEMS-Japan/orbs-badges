@@ -2,9 +2,6 @@ description: >
   Generate badges from the services of RHEMS BADGES.
 
 parameters:
-  fingerprint:
-    type: string
-    description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended that you refer to https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key and use the deployment key."
   api_token:
     type: string
     default: $BADGE_API_TOKEN
@@ -43,9 +40,6 @@ parameters:
     description: "write text for right side (optional)"
 
 steps:
-  - add_ssh_keys:
-      fingerprints:
-        - << parameters.fingerprint >>
   - run:
       when: on_fail
       name: RHEMS BADGE - Detecting Job Status (FAIL)
