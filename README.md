@@ -5,9 +5,9 @@
 
 This orb creates a badge that looks like this:
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211214-071112)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211214-082004)
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211214-073645)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20211214-082004)
 
 This orb has the following functions.
 
@@ -38,7 +38,7 @@ First, it's a good idea to run curl once to generate any badges.
 
 The URL format of the image has the following structure.
 
-https://badges.rhems-japan.com/api-get-badge.svg?user_id=`user id`&`timedelta=9`&organization=`organization name`&repo=`repository name`&app=`app name`&branch=alpha&cised=true&update=20211214-073645)
+https://badges.rhems-japan.com/api-get-badge.svg?user_id=`user id`&`timedelta=9`&organization=`organization name`&repo=`repository name`&app=`app name`&branch=alpha&cised=true&update=20211214-082004)
 
 |param|description|
 |:---:|:---|
