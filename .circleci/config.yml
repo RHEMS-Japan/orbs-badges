@@ -50,7 +50,9 @@ jobs:
       #     status: "true"
       #     color: "#18c91e"
       #     text: $CIRCLE_BUILD_NUM
-      - badges/update_readme
+      - badges/update_readme:
+          branch: "alpha"
+          only_date: false
 
 
 

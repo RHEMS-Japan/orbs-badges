@@ -14,6 +14,10 @@ parameters:
     type: boolean
     default: false
     description: "Set this to true if you want to update only the date and not the branch name in the badge URL."
+  branch:
+    type: string
+    default: $CIRCLE_BRANCH
+    description: "if branche is empty it will use ${CIRCLE_BRANCH} (optional)"
   file_path:
     type: string
     default: ./README.md
@@ -41,4 +45,5 @@ steps:
         FILE_PATH: << parameters.file_path >>
         UPDATE_README: << parameters.update_readme >>
         ONLY_DATE: << parameters.only_date >>
+        BRANCH: << parameters.branch >>
       command: << include(scripts/update_readme.sh) >>
