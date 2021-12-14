@@ -97,7 +97,9 @@ workflows:
     jobs:
       - badges/create_badge:
           fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      - badges/update_readme
+      - badges/update_readme:
+          requires:
+            - badges/create_badge
       # Run any integration tests defined within the `jobs` key.
       # - integration-test-1
       # Publish a semver version of the orb. relies on
@@ -114,7 +116,6 @@ workflows:
           publish-version-tag: false
           requires:
             # - integration-test-1
-            - badges/create_badge
             - badges/update_readme
           filters:
             branches:
