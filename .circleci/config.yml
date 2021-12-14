@@ -52,7 +52,7 @@ jobs:
       #     text: $CIRCLE_BUILD_NUM
       - badges/update_readme:
           branch: "alpha"
-          only_date: true
+          only_date: false
 
 
 
