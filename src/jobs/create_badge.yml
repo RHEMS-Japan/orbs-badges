@@ -4,6 +4,9 @@ description: >
 executor: exe-badges
 
 parameters:
+  fingerprint:
+    type: string
+    description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended that you refer to https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key and use the deployment key."
   api_token:
     type: string
     default: $BADGE_API_TOKEN
@@ -43,6 +46,7 @@ parameters:
 
 steps:
   - create_badge:
+      fingerprint: << parameters.fingerprint >>
       api_token: << parameters.api_token >>
       organization: << parameters.organization >>
       repo: << parameters.repo >>
