@@ -10,6 +10,10 @@ parameters:
     type: string
     default: "true"
     description: "set true or false to update readme"
+  only_date:
+    type: boolean
+    default: false
+    description: "Set this to true if you want to update only the date and not the branch name in the badge URL."
   file_path:
     type: string
     default: ./README.md
@@ -36,4 +40,5 @@ steps:
         GIT_USER_EMAIL: << parameters.user_email >>
         FILE_PATH: << parameters.file_path >>
         UPDATE_README: << parameters.update_readme >>
+        ONLY_DATE: << parameters.only_date >>
       command: << include(scripts/update_readme.sh) >>

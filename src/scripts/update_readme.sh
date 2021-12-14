@@ -1,5 +1,6 @@
 update_readme () {
   echo "== run update_readme =="
+  echo ${ONLY_DATE}
   if [ -n "${CIRCLE_BRANCH}" ]; then
     sed -i -e "s#branch=.*\&cised=true.*#branch=${CIRCLE_BRANCH}\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
     git config --global user.email ${GIT_USER_EMAIL}
