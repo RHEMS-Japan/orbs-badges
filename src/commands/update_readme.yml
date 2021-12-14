@@ -2,6 +2,10 @@ description: >
   Generate badges from the services of RHEMS BADGES.
 
 parameters:
+  checkout:
+    type: boolean
+    default: true
+    description: "Whether to check out first.(default:true)"
   update_readme:
     type: string
     default: "true"
@@ -20,6 +24,11 @@ parameters:
     description: "GitHub user.email"
 
 steps:
+  - run:
+      when: << parameters.checkout >>
+      name: CheckOut
+      run: 
+        checkout
   - run:
       when: always
       name: update README

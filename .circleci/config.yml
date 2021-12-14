@@ -36,7 +36,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - setup_ssh_keys ## need this to update readme set is as first
-      - checkout
+      # - checkout
       # test for error
       # - run:
       #     name: test error
