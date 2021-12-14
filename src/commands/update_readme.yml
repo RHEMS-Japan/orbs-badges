@@ -24,12 +24,11 @@ parameters:
     description: "GitHub user.email"
 
 steps:
-  - run:
-      when: << parameters.checkout >>
-      name: CheckOut
-      run: 
-        steps:
-          checkout
+  - when: 
+      condition: << parameters.checkout >>
+      steps: 
+        - run:
+            checkout
   - run:
       when: always
       name: update README
