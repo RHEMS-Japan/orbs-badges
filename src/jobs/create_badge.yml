@@ -43,7 +43,6 @@ parameters:
 
 steps:
   - create_badge:
-      fingerprint: << parameters.fingerprint >>
       api_token: << parameters.api_token >>
       organization: << parameters.organization >>
       repo: << parameters.repo >>
