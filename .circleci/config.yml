@@ -43,8 +43,7 @@ jobs:
       #     command: |
       #         exit 1
       ## normal use
-      # - badges/create_badge:
-          # fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/create_badge
       ## custom user_id
       # - badges/create_badge:
       #     app: "orbs-badges"
@@ -53,7 +52,8 @@ jobs:
       #     text: $CIRCLE_BUILD_NUM
       #     branch: "alpha"
       #     only_date: false
-      # - badges/update_readme
+      - badges/update_readme:
+          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
 
 
 
