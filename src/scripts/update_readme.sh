@@ -1,7 +1,7 @@
 update_readme () {
   echo "== run update_readme =="
   if [ -n "${CIRCLE_BRANCH}" ]; then
-    if [ ${DATE_ONLY} = 0 ]; then
+    if [ ${ONLY_DATE} = 0 ]; then
       echo "only_date: false"
       sed -i -e "s#branch=.*\&cised=true.*#branch=${CIRCLE_BRANCH}\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
     else
