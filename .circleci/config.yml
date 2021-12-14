@@ -95,10 +95,11 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      # - badges/create_badge
-      # - badges/update_readme
+      - badges/create_badge:
+          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/update_readme
       # Run any integration tests defined within the `jobs` key.
-      - integration-test-1
+      # - integration-test-1
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
@@ -112,7 +113,9 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:
-            - integration-test-1
+            # - integration-test-1
+            - badges/create_badge
+            - badges/update_readme
           filters:
             branches:
               only:
