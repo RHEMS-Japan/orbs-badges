@@ -38,12 +38,14 @@ steps:
   - when: 
       condition: always
       steps:
+        - run: echo "add_ssh_keys"
         - add_ssh_keys:
             fingerprints:
               - << parameters.fingerprint >>
   - when: 
       condition: << parameters.checkout >>
       steps: 
+        - run: echo "checkout"
         - checkout
   - run:
       when: always
