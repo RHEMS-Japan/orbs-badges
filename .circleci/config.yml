@@ -20,29 +20,33 @@ parameters:
     default: "dev:alpha"
 
 jobs:
+  fail-test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: test error
+          command: |
+              exit 1
+
   integration-test-1:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
-      # test for error
-      # - run:
-      #     name: test error
-      #     command: |
-      #         exit 1
       ## normal use
       # - badges/create_badge
       ## custom user_id
-      # - badges/create_badge:
-          # app: "orbs-badges"
-      #     status: "true"
-          # organization: "orbs-badges"
-          # color: "#50ebd1"
-          # text: $CIRCLE_BUILD_NUM
+      - badges/create_badge:
+          app: "orbs-badges"
+          status: "true"
+          organization: "orbs-badges"
+          color: "#50ebd1"
+          text: $CIRCLE_BUILD_NUM
       #     branch: "alpha"
       #     only_date: false
-      # - badges/update_readme:
-          # fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/update_readme:
+          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
 
 
 
@@ -74,14 +78,19 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
+      - fail-test
       - badges/create_badge:
           organization: "orbs-badges"
           color: "#50ebd1"
           text: $CIRCLE_BUILD_NUM
           status: "false"
+          requires:
+            - "fail-test"
       - badges/update_readme:
           fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      # - integration-test-1
+          requires:
+            - badges/create_badge
+      - integration-test-1
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: rhems-japan/badges
           context: orb-publishing
