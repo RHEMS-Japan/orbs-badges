@@ -38,7 +38,7 @@ steps:
       command: echo "checkout is << parameters.checkout >>"
   - when:
       condition:
-        equal: [ 0, << parameters.checkout >> ]
+        equal: [ true, << parameters.checkout >> ]
       steps:
         - checkout
   - run:
