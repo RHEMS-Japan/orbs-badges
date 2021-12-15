@@ -91,7 +91,7 @@ Please specify the latest version of orb as much as possible.
     badges: rhems-japan/badges@x.y.z
 ```
 
-When you call update_readme, set the string you just checked for `fingerprint` as a parameter.
+Before calling this orb command, call the command to add the `ssh key` mentioned above. For `fingerprints`, enter the character string confirmed earlier.
 
 The following is an example of using it from a command.
 
