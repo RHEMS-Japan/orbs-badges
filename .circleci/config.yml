@@ -50,7 +50,7 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - orb-tools/lint # Lint Yaml files
+      # - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
       - shellcheck/check:
           dir: ./src/scripts
@@ -74,14 +74,15 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      # - badges/create_badge:
-      #     organization: "orbs-badges"
-      #     color: "#50ebd1"
-      #     text: $CIRCLE_BUILD_NUM
-      # - badges/update_readme:
-      #     fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      #     requires:
-      #       - badges/create_badge
+      - badges/create_badge:
+          organization: "orbs-badges"
+          color: "#50ebd1"
+          text: $CIRCLE_BUILD_NUM
+          status: "false"
+      - badges/update_readme:
+          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+          requires:
+            - badges/create_badge
       # - integration-test-1
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: rhems-japan/badges
