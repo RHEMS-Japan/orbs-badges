@@ -41,8 +41,8 @@ jobs:
           app: "orbs-badges"
           status: "true"
           organization: "orbs-badges"
-          color: "#50ebd1"
-          text: $CIRCLE_BUILD_NUM
+          # color: "#50ebd1"
+          # text: $CIRCLE_BUILD_NUM
       #     branch: "alpha"
       #     only_date: false
       - badges/update_readme

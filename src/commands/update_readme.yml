@@ -34,7 +34,7 @@ parameters:
 steps:
   - when:
       condition: << parameters.checkout >>
-      steps: 
+      steps:
         - run: echo "checkout"
         - checkout
   - run:
