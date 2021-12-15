@@ -45,7 +45,7 @@ jobs:
           text: $CIRCLE_BUILD_NUM
       #     branch: "alpha"
       #     only_date: false
-      # - badges/update_readme
+      - badges/update_readme
 
 workflows:
   test-pack:
