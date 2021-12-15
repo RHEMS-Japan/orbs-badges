@@ -32,18 +32,23 @@ The `user id` and` api token` are displayed.
 - `api token`: Required when creating a badge.
 - `user id`: Required for badge display.
 
+It is recommended to set the api token as `BADGE_API_TOKEN` in the environment variable of the CircleCi project in advance.
+
+<img src="images/image02.png" width="600px">
+
 ### 3. Write the URL anywhere in the README
 
 First, it's a good idea to run curl once to generate any badges.
 
 The URL format of the image has the following structure.
 
-https://badges.rhems-japan.com/api-get-badge.svg?user_id=`user id`&`timedelta=9`&organization=`organization name`&repo=`repository name`&app=`app name`&branch=alpha&cised=true&update=20211215-015457)
+<img src="images/image03.png" width="600px">
+
 
 |param|description|
 |:---:|:---|
 |`user id`|User ID obtained from "RHEMS badge"|
-|`organization name of github`|Organization name of github. orb will automatically use the organization name of the repository in use if you are not doing anything|
+|`organization name`|Organization name. orb will automatically use the organization name of the repository in use if you are not doing anything|
 |`repository name`|orb will automatically use the repository name in use if you haven't done anything in particular.|
 |`app name`|The string on the left side of the badge.|
 |`update date`|It is a time stamp automatically given by the application side.|
@@ -64,6 +69,8 @@ Use the `ssh keygen` command to generate a public / private key.
 - Select `add deploy key`, copy and paste the contents of the public key (.pub) to Title with any name and Key.
 - Check `Allow write access` and select `Add key`.
 
+<img src="images/image04.png" width="600px">
+
 #### 3. Register your private key with your CircleCi project
 
 - Open the `Project Settings` of your CircleCi project.
@@ -72,6 +79,7 @@ Use the `ssh keygen` command to generate a public / private key.
 - Paste all the contents of the private key you generated earlier into the Hostname, `github.com`, and the Private Key.
 - Confirm that `Fingerprint` is displayed after registering the private key.
 
+<img src="images/image05.png" width="600px">
 
 ### 5. How to write `.circleci/config.yml`
 
@@ -83,25 +91,43 @@ Please specify the latest version of orb as much as possible.
     badges: rhems-japan/badges@x.y.z
 ```
 
-Before calling this orb command, call the command to add the `ssh key` mentioned above.
-For `fingerprints`, enter the character string confirmed earlier.
+When you call update_readme, set the string you just checked for `fingerprint` as a parameter.
+
+The following is an example of using it from a command.
 
 ```yml
-commands:
-  setup_ssh_keys:
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-          - "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
-          
 jobs:
-  job_name:
+  badges:
     docker:
       - image: cimg/base:stable
     steps:
-      - setup_ssh_keys
       - checkout
-      - badges/create_badge
-      - badges/update_readme
+      - badges/create_badge:
+          organization: "my-organization"
+          app: "my-app" # The string on the left side of the badge
+          text: "v1.0" # The string on the right side of the badge
+          color: "#ff0000" # (="red") Color of the right side of the badge
+      - badges/update_readme:
+          fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
+
+workflows:
+  badge-update:
+    - badges
 ```
 
+The following is an example of using it from a job.
+
+```yml
+workflows:
+  badge_jobs:
+    jobs:
+      - badges/create_badge:
+          organization: "my-organization"
+          app: "my-app" # The string on the left side of the badge
+          text: "v1.0" # The string on the right side of the badge
+          color: "#ff0000" # (="red") Color of the right side of the badge
+      - badges/update_readme:
+            fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
+            requires:
+              - badges/create_badge
+```
