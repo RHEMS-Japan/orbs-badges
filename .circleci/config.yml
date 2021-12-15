@@ -35,7 +35,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+            - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
       - fail-test
       - badges/create_badge:
           app: "orbs-badges"
@@ -45,8 +45,7 @@ jobs:
           text: $CIRCLE_BUILD_NUM
       #     branch: "alpha"
       #     only_date: false
-      - badges/update_readme:
-          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/update_readme
 
 workflows:
   test-pack:
