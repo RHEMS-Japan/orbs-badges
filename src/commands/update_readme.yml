@@ -37,7 +37,6 @@ parameters:
 steps:
   - add_ssh_keys:
       when: always
-      name: add-ssh-keys
       fingerprints:
         - << parameters.fingerprint >>
   - when:
