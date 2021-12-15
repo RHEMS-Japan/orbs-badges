@@ -43,9 +43,6 @@ First, it's a good idea to run curl once to generate any badges.
 
 The URL format of the image has the following structure.
 
-<<<<<<< HEAD
-`https`://badges.rhems-japan.com/api-get-badge.svg?user_id=`user id`&`timedelta=9`&organization=`organization name`&repo=`repository name`&app=`app name`&branch=main&cised=true&update=20211215-050300)
-=======
 <img src="images/image03.png" width="600px">
 
 >>>>>>> alpha
