@@ -35,10 +35,12 @@ parameters:
     description: "GitHub user.email"
 
 steps:
-  - add_ssh_keys:
+  - run:
       when: always
-      fingerprints:
-        - << parameters.fingerprint >>
+      command: |
+          add_ssh_key:
+            fingerprint:
+              - << parameters.fingerprint >>
   - when:
       condition: << parameters.checkout >>
       steps: 
