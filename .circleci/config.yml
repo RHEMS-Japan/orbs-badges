@@ -45,8 +45,6 @@ jobs:
       - badges/update_readme:
           fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
 
-
-
 workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
