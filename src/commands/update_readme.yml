@@ -35,13 +35,21 @@ parameters:
     description: "GitHub user.email"
 
 steps:
-  - when: 
-      condition: always
-      steps:
-        - run: echo "add_ssh_keys"
-        - add_ssh_keys:
-            fingerprints:
-              - << parameters.fingerprint >>
+  - run:
+      when: always
+      name: add ssh key
+      command: |
+        add_ssh_keys:
+          fingerprints:
+            - << parameters.fingerprint >>
+
+  # - when:
+  #     condition: always
+  #     steps:
+  #       - run: echo "add_ssh_keys"
+  #       - add_ssh_keys:
+  #           fingerprints:
+  #             - << parameters.fingerprint >>
   - when: 
       condition: << parameters.checkout >>
       steps: 
