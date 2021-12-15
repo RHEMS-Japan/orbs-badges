@@ -48,7 +48,7 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      # - orb-tools/lint # Lint Yaml files
+      - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
       # - shellcheck/check:
       #     dir: ./src/scripts
@@ -59,7 +59,7 @@ workflows:
           orb-name: rhems-japan/badges
           context: orb-publishing
           requires:
-            # - orb-tools/lint
+            - orb-tools/lint
             - orb-tools/pack
             - bats/run
             # - shellcheck/check
