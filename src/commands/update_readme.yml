@@ -32,10 +32,14 @@ parameters:
     description: "GitHub user.email"
 
 steps:
+  - run:
+      when: always
+      name: check parameter
+      command: echo "checkout is << parameters.checkout >>"
   - when:
-      condition: << parameters.checkout >>
+      condition:
+        equal: [ 0, << parameters.checkout >> ]
       steps:
-        - run: echo "checkout"
         - checkout
   - run:
       when: always
