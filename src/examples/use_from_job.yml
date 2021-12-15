@@ -9,7 +9,7 @@ description: >
   (https://github.com/RHEMS-Japan/orbs-badges/tree/main#3-write-the-url-anywhere-in-the-readme)
 
   As a reminder, parameters such as organization name and repository name specified in circleci and each parameter of the URL described in the README must match or it will not work properly.
-  
+
   3. Configure the ssh key to be able to update ReadMe from CircleCi.
   (https://github.com/RHEMS-Japan/orbs-badges/tree/main#4-prepare-ssh-key)
 
