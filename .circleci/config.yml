@@ -49,7 +49,7 @@ jobs:
           # app: "orbs-badges"
       #     status: "true"
           organization: "orbs-badges"
-          color: "#18c91e"
+          color: "#50ebd1"
           text: $CIRCLE_BUILD_NUM
       #     branch: "alpha"
       #     only_date: false
