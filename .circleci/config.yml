@@ -33,6 +33,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
       - fail-test
       - badges/create_badge:
           app: "orbs-badges"
@@ -49,7 +52,7 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      # - orb-tools/lint # Lint Yaml files
+      - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
       # - shellcheck/check:
       #     dir: ./src/scripts
