@@ -1,18 +1,13 @@
 description: >
   Generate a badge and update the ReadMe.
   Before running this job, you need to do some preparation.
-
   1. register for the service at the following URL with a github account
   (https://badges.rhems-japan.com/)
-
   2. Include the URL in ReadMe in a specific format.
   (https://github.com/RHEMS-Japan/orbs-badges/tree/main#3-write-the-url-anywhere-in-the-readme)
-
   As a reminder, parameters such as organization name and repository name specified in circleci and each parameter of the URL described in the README must match or it will not work properly.
-
   3. Configure the ssh key to be able to update ReadMe from CircleCi.
   (https://github.com/RHEMS-Japan/orbs-badges/tree/main#4-prepare-ssh-key)
-
 usage:
   version: 2.1
   orbs:
@@ -25,7 +20,5 @@ usage:
             app: "my-app" # The string on the left side of the badge
             text: "v1.0" # The string on the right side of the badge
             color: "#ff0000" # (="red") Color of the right side of the badge
-        - badges/update_readme:
-              fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
-              requires:
-                - badges/create_badge
+        - badges/update_readme: # Execute checkout and add_ssh_keys in the job.
+            fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:3f"

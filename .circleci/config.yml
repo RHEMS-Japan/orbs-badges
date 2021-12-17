@@ -19,30 +19,35 @@ parameters:
     type: string
     default: "dev:alpha"
 
+commands:
+  fail-test:
+    steps:
+      - run:
+          name: test error
+          command: |
+              exit 1
+
 jobs:
+  fail-test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - fail-test
   integration-test-1:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
-      # test for error
-      # - run:
-      #     name: test error
-      #     command: |
-      #         exit 1
-      ## normal use
-      # - badges/create_badge
-      ## custom user_id
-      # - badges/create_badge:
-          # app: "orbs-badges"
-      #     status: "true"
-          # organization: "orbs-badges"
-          # color: "#50ebd1"
+      - add_ssh_keys:
+          fingerprints:
+            - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/create_badge:
+          app: "orbs-badges"
+          status: "true"
+          organization: "orbs-badges"
+          # color: "#913980"
           # text: $CIRCLE_BUILD_NUM
-      #     branch: "alpha"
-      #     only_date: false
-      # - badges/update_readme:
-          # fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/update_readme
 
 workflows:
   test-pack:
@@ -59,7 +64,7 @@ workflows:
           orb-name: rhems-japan/badges
           context: orb-publishing
           requires:
-            - orb-tools/lint
+            # - orb-tools/lint
             - orb-tools/pack
             - bats/run
             # - shellcheck/check
@@ -72,15 +77,16 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - badges/create_badge:
-          organization: "orbs-badges"
-          color: "#112380"
-          text: $CIRCLE_BUILD_NUM
-      - badges/update_readme:
-          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-          requires:
-            - badges/create_badge
+      # - badges/create_badge:
+      #     organization: "orbs-badges"
+          # color: "#913980"
+          # text: $CIRCLE_BUILD_NUM
       # - integration-test-1
+      # - fail-test
+      # - badges/update_readme:
+      #     only_date: true
+      #     branch: hoge
+      #     fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: rhems-japan/badges
           context: orb-publishing

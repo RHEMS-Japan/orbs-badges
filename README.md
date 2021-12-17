@@ -6,9 +6,9 @@
 This orb creates a badge that looks like this:
 
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=main&cised=true&update=20211215-052521)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=main&cised=true&update=20211217-052039)
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=main&cised=true&update=20211215-052521)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=main&cised=true&update=20211217-052039)
 
 This orb has the following functions.
 
@@ -44,8 +44,6 @@ First, it's a good idea to run curl once to generate any badges.
 The URL format of the image has the following structure.
 
 <img src="images/image03.png" width="600px">
-
->>>>>>> alpha
 
 |param|description|
 |:---:|:---|
@@ -93,7 +91,7 @@ Please specify the latest version of orb as much as possible.
     badges: rhems-japan/badges@x.y.z
 ```
 
-When you call update_readme, set the string you just checked for `fingerprint` as a parameter.
+Before calling this orb command, call the command to add the `ssh key` mentioned above. For `fingerprints`, enter the character string confirmed earlier.
 
 The following is an example of using it from a command.
 
@@ -104,13 +102,15 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:3f"
       - badges/create_badge:
           organization: "my-organization"
           app: "my-app" # The string on the left side of the badge
           text: "v1.0" # The string on the right side of the badge
           color: "#ff0000" # (="red") Color of the right side of the badge
-      - badges/update_readme:
-          fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
+      - badges/update_readme
 
 workflows:
   badge-update:
@@ -128,8 +128,13 @@ workflows:
           app: "my-app" # The string on the left side of the badge
           text: "v1.0" # The string on the right side of the badge
           color: "#ff0000" # (="red") Color of the right side of the badge
-      - badges/update_readme:
-            fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
-            requires:
-              - badges/create_badge
+      - badges/update_readme: # Execute checkout and add_ssh_keys in the job.
+          fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:3f"
 ```
+
+## What if my badge doesn't update?
+
+- Make sure that the organization name, app name, etc. in the URL are correct.
+- If you create a badge without specifying color and txt, it will generate a badge with the string pass or error as the build status of CircleCi.
+- If the CircleCi job fails with color and txt specified, the badge will not be updated; if the CircleCi job fails without color and txt specified, the badge will be updated with the string "error".
+- If you call it as a job from a workflow, you can update the badge, but you cannot generate the badge by the job status in CircleCi.
