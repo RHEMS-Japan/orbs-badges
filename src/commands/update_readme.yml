@@ -44,10 +44,12 @@ steps:
               - << parameters.fingerprint >>
   - when:
       condition: << parameters.checkout >>
+      name: checkout
       steps:
         - checkout
   - unless:
       condition: << parameters.checkout >>
+      name: no checkout
       steps:
         - run: echo "parameters.checkout is << parameters.checkout >>"
   - run:
