@@ -29,13 +29,13 @@ commands:
 
 jobs:
   integration-test-1:
-    machine:
-      image: ubuntu-2004:202010-01
-      docker_layer_caching: true
-    # docker:
-    #   - image: cimg/base:stable
+    docker:
+      - image: cimg/base:stable
     steps:
-      # - checkout
+      - checkout
+      - add_ssh_keys:
+          fingerprints: 
+            - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
       - fail-test
       - badges/create_badge:
           app: "orbs-badges"
@@ -46,9 +46,7 @@ jobs:
       #     branch: "alpha"
       #     only_date: false
       - badges/update_readme:
-          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-          only_date: false
-          # checkout: false
+          only_date: true
 
 workflows:
   test-pack:
