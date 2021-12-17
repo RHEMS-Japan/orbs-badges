@@ -41,13 +41,13 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      - fail-test
+      # - fail-test
       - badges/create_badge:
           app: "orbs-badges"
           status: "true"
           organization: "orbs-badges"
-          color: "#913980"
-          text: $CIRCLE_BUILD_NUM
+          # color: "#913980"
+          # text: $CIRCLE_BUILD_NUM
           branch: "alpha"
       - badges/update_readme:
           only_date: true
