@@ -36,9 +36,9 @@ steps:
       when: always
       name: check parameter
       command: echo "checkout is << parameters.checkout >>"
+  - run: echo checkout is << parameters.checkout >>
   - when:
-      condition:
-        equal: [ true, << parameters.checkout >> ]
+      condition: << parameters.checkout >>
       steps:
         - checkout
   - run:
