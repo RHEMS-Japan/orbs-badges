@@ -47,6 +47,7 @@ jobs:
       #     only_date: false
       - badges/update_readme:
           only_date: true
+          branch: hoge
 
 workflows:
   test-pack:
