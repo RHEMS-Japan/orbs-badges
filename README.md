@@ -132,8 +132,9 @@ workflows:
           fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:3f"
 ```
 
-### What if my badge doesn't update?
+## What if my badge doesn't update?
 
 - Make sure that the organization name, app name, etc. in the URL are correct.
 - If you create a badge without specifying color and txt, it will generate a badge with the string pass or error as the build status of CircleCi.
 - If the CircleCi job fails with color and txt specified, the badge will not be updated; if the CircleCi job fails without color and txt specified, the badge will be updated with the string "error".
+- If you call it as a job from a workflow, you can update the badge, but you cannot generate the badge by the job status in CircleCi.
