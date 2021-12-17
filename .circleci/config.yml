@@ -80,16 +80,16 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      # - badges/create_badge:
-      #     organization: "orbs-badges"
-      #     color: "#913980"
-      #     text: $CIRCLE_BUILD_NUM
-      - integration-test-1
+      - badges/create_badge:
+          organization: "orbs-badges"
+          # color: "#913980"
+          # text: $CIRCLE_BUILD_NUM
+      # - integration-test-1
       # - fail-test
-      # - badges/update_readme:
-      #     only_date: true
-      #     branch: hoge
-      #     fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - badges/update_readme:
+          only_date: true
+          branch: hoge
+          fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: rhems-japan/badges
           context: orb-publishing
