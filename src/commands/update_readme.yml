@@ -54,6 +54,10 @@ steps:
         - run: echo "parameters.checkout is << parameters.checkout >>"
   - run:
       when: always
+      name: add ssh key
+      command: << include(scripts/add_ssh_key.sh) >>
+  - run:
+      when: always
       name: update README
       environment:
         GIT_USER_NAME: << parameters.user_name >>
