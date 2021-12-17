@@ -46,6 +46,10 @@ steps:
       condition: << parameters.checkout >>
       steps:
         - checkout
+  - unless:
+      condition: << parameters.checkout >>
+      steps:
+        - run: echo "parameters.checkout is << parameters.checkout >>"
   - run:
       when: always
       name: update README
