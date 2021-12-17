@@ -33,7 +33,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       # - checkout
-      # - fail-test
+      - fail-test
       - badges/create_badge:
           app: "orbs-badges"
           status: "true"
@@ -44,6 +44,7 @@ jobs:
       #     only_date: false
       - badges/update_readme:
           fingerprint: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+          only_date: false
           # checkout: false
 
 workflows:
