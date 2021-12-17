@@ -32,11 +32,16 @@ parameters:
     description: "GitHub user.email"
 
 steps:
-  - run:
-      when: always
-      name: check parameter
-      command: echo "checkout is << parameters.checkout >>"
-  - run: echo checkout is << parameters.checkout >>
+  # - run:
+  #     when: always
+  #     name: check parameter
+  #     command: echo "checkout is << parameters.checkout >>"
+  - when:
+      condition: always
+      steps:
+        - add_ssh_keys:
+            fingerprints:
+              - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
   - when:
       condition: << parameters.checkout >>
       steps:
