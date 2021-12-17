@@ -28,6 +28,11 @@ commands:
               exit 1
 
 jobs:
+  fail-test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - fail-test
   integration-test-1:
     docker:
       - image: cimg/base:stable
@@ -36,7 +41,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      - fail-test
+      # - fail-test
       # - badges/create_badge:
       #     app: "orbs-badges"
       #     status: "true"
@@ -81,6 +86,7 @@ workflows:
           color: "#50ebd1"
           text: $CIRCLE_BUILD_NUM
       - integration-test-1
+      - fail-test
       - badges/update_readme:
           only_date: true
           branch: hoge
