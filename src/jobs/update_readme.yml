@@ -4,6 +4,9 @@ description: >
 executor: exe-badges
 
 parameters:
+  fingerprint:
+    type: string
+    description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended that you refer to https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key and use the deployment key."
   update_readme:
     type: string
     default: "true"
@@ -31,6 +34,9 @@ parameters:
 
 steps:
   - checkout
+  - add_ssh_keys:
+      fingerprints:
+        - << parameters.fingerprint >>
   - update_readme:
       user_name: << parameters.user_name >>
       user_email: << parameters.user_email >>

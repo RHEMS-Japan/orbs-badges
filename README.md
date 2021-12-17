@@ -108,7 +108,7 @@ jobs:
           text: "v1.0" # The string on the right side of the badge
           color: "#ff0000" # (="red") Color of the right side of the badge
       - badges/update_readme:
-          fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:55"
+          fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:3f"
 
 workflows:
   badge-update:

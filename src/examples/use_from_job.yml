@@ -20,4 +20,5 @@ usage:
             app: "my-app" # The string on the left side of the badge
             text: "v1.0" # The string on the right side of the badge
             color: "#ff0000" # (="red") Color of the right side of the badge
-        - badges/update_readme
+        - badges/update_readme: # Execute checkout and add_ssh_keys in the job.
+            fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:3f"
