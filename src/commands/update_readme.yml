@@ -41,8 +41,7 @@ steps:
       steps:
         - add_ssh_keys:
             fingerprints:
-              # - << parameters.fingerprint >>
-              - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+              - << parameters.fingerprint >>
   - when:
       condition: << parameters.checkout >>
       steps:
