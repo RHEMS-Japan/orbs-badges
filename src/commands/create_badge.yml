@@ -52,6 +52,9 @@ steps:
         echo 'export STATUS=${STATUS}' > /tmp/RHEMS_JOB_STATUS
   - run:
       when: always
+      command: add_ssh_keys
+  - run:
+      when: always
       name: update rhems badge
       environment:
         TOKEN: << parameters.api_token >>
