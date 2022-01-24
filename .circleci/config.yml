@@ -19,6 +19,13 @@ parameters:
     type: string
     default: "dev:alpha"
 
+fil: &fil
+  filters:
+    branches:
+      ignore: /.*/
+    tags:
+      only: /.*/
+
 commands:
   fail-test:
     steps:
@@ -106,27 +113,27 @@ workflows:
   test-pack-for-tag:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - orb-tools/pack # Pack orb source
+      - orb-tools/pack: # Pack orb source
+          <<: *fil
       - bats/run:
           path: ./src/tests
+          <<: *fil
       - orb-tools/publish-dev:
           orb-name: rhems-japan/badges
           context: orb-publishing
           requires:
             - orb-tools/pack
             - bats/run
+          <<: *fil
       - orb-tools/trigger-integration-tests-workflow:
           name: trigger-integration-dev
           context: orb-publishing
           requires:
             - orb-tools/publish-dev
+          <<: *fil
 
   test_tag_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       - integration-test-1:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /.*/
+          <<: *fil
