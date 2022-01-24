@@ -44,7 +44,6 @@ The URL format of the image has the following structure.
 
 <img src="images/image03.png" width="600px">
 
-
 |param|description|
 |:---:|:---|
 |`user id`|User ID obtained from "RHEMS badge"|

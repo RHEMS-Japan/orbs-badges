@@ -2,6 +2,7 @@ version: 2.1
 
 description: >
   It is an orb for automatically generating badges from the service of RHEMS BADGES.
+  See the repository README for details.
 
 display:
   home_url: "https://www.rhems-japan.co.jp/"

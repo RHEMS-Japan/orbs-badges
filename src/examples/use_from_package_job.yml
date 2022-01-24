@@ -22,3 +22,4 @@ usage:
             color: "#ff0000" # (="red") Color of the right side of the badge
         - package/update_readme: # Execute checkout and add_ssh_keys in the job.
             fingerprint: "a0:b1:c2:d3:e4:f5:a6:b7:c8:d9:ea:fb:0c:1d:2e:3f"
+
