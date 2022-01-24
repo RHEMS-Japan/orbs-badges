@@ -43,7 +43,7 @@ echo "--- debug ---"
 
 post_to_badgeserver () {
 echo "--- main ---"
-HTTP_RESPONSE=$(curl -o /dev/null --silent --write-out '%{http_code}\n' -X POST -H "Content-Type: application/json" \
+RESPONSE=$(curl -w '%{http_code}\n' -X POST -H "Content-Type: application/json" \
 https://badges.rhems-japan.com/api-update-badge \
 -d @- <<EOS
 {
@@ -65,24 +65,15 @@ EOF`
 }
 EOS
 )
-echo "HTTP_RESPONSE=${HTTP_RESPONSE} - ${STATUS}"
-echo "--- main ---"
-# Responses other than 200 end with an error.
 
+URL=$(echo $RESPONSE | cut -d' ' -f1)
+HTTP_RESPONSE=$(echo $RESPONSE | rev | cut -d' ' -f1 | rev)
+echo http_code=$HTTP_RESPONSE
 if [ ${HTTP_RESPONSE} -ne '200' ]; then
-  echo 'not 200'
+  # Responses other than 200 end with an error.
   exit 1
 else
-  echo '200'
-  if [ -n "${USER_ID}" ]; then
-echo "https://badges.rhems-japan.com/api-get-badge.svg?\
-user_id=${USER_ID}\
-&organization=${ORGANIZATION}\
-&repo=${REPO}\
-&app=${APP}\
-&branch=${BRANCH}\
-&uptime=${TIME}"
-fi
+  echo -e $URL
 fi
 }
 

@@ -2,10 +2,6 @@ description: >
   Generate badges from the services of RHEMS BADGES.
 
 parameters:
-  user_id:
-    type: string
-    default: ""
-    description: "The User Id of RHEMS BADGES."
   api_token:
     type: string
     default: $BADGE_API_TOKEN
@@ -58,7 +54,6 @@ steps:
       when: always
       name: update rhems badge
       environment:
-        USER_ID: << parameters.user_id >>
         TOKEN: << parameters.api_token >>
         ORGANIZATION: << parameters.organization >>
         REPO: << parameters.repo >>
