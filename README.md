@@ -138,3 +138,4 @@ workflows:
 - If you create a badge without specifying color and txt, it will generate a badge with the string pass or error as the build status of CircleCi.
 - If the CircleCi job fails with color and txt specified, the badge will not be updated; if the CircleCi job fails without color and txt specified, the badge will be updated with the string "error".
 - If you call it as a job from a workflow, you can update the badge, but you cannot generate the badge by the job status in CircleCi.
+- If you use the tag filter, the ReadMe cannot be updated because $CIRCLE_BRANCH is empty. Please set the value to $CIRCLE_BRANCH in the script before calling update_readme and reflect it in $BASH_ENV.
