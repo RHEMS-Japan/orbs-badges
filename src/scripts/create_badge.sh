@@ -74,7 +74,7 @@ if [ ${HTTP_RESPONSE} -ne '200' ]; then
   exit 1
 else
   echo '200'
-[ -n "${USER_ID}" ] &&
+  if [ -n "${USER_ID}" ]; then
 echo "https://badges.rhems-japan.com/api-get-badge.svg?\
 user_id=${USER_ID}\
 &organization=${ORGANIZATION}\
@@ -82,6 +82,7 @@ user_id=${USER_ID}\
 &app=${APP}\
 &branch=${BRANCH}\
 &uptime=${TIME}"
+fi
 fi
 }
 
