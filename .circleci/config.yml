@@ -132,7 +132,7 @@ workflows:
             - orb-tools/publish-dev
           <<: *fil
       - integration-test-1:
-          name: integration-test-from-tag
+          # name: integration-test-from-tag
           requires:
-            - orb-tools/trigger-integration-tests-workflow
+            - orb-tools/publish-dev
           <<: *fil
