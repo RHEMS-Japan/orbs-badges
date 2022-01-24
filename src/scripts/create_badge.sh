@@ -73,14 +73,15 @@ if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
   exit 1
 else
-[ -n "${USER_ID}" ] && \
-echo "https://badges.rhems-japan.com/api-get-badge.svg?\
-user_id=${USER_ID}\
-&organization=${ORGANIZATION}\
-&repo=${REPO}\
-&app=${APP}\
-&branch=${BRANCH}\
-&uptime=${TIME}"
+  echo '200'
+# [ -n "${USER_ID}" ] && \
+# echo "https://badges.rhems-japan.com/api-get-badge.svg?\
+# user_id=${USER_ID}\
+# &organization=${ORGANIZATION}\
+# &repo=${REPO}\
+# &app=${APP}\
+# &branch=${BRANCH}\
+# &uptime=${TIME}"
 fi
 }
 
