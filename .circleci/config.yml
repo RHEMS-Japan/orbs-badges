@@ -55,8 +55,8 @@ jobs:
       - badges/create_badge:
           app: "orbs-badges"
           organization: "orbs-badges"
-          color: "white"
-          text: $CIRCLE_BUILD_NUM
+          # color: "white"
+          # text: $CIRCLE_BUILD_NUM
       - badges/update_readme
 
 workflows:
