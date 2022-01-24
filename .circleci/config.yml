@@ -110,7 +110,7 @@ workflows:
               only:
                 - main
 
-  test-pack-for-tag:
+  test-pack-from-tag:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
       - orb-tools/pack: # Pack orb source
@@ -131,9 +131,8 @@ workflows:
           requires:
             - orb-tools/publish-dev
           <<: *fil
-
-  test_tag_deploy:
-    when: << pipeline.parameters.run-integration-tests >>
-    jobs:
       - integration-test-1:
+          name: integration-test-from-tag
+          requires:
+            - orb-tools/trigger-integration-tests-workflow
           <<: *fil
