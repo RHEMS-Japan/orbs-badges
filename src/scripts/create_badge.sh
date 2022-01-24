@@ -1,6 +1,5 @@
 TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
-
 . "/tmp/RHEMS_JOB_STATUS"
 
 ${STATUS} || STATUS=false
@@ -12,7 +11,6 @@ ${STATUS} || STATUS=false
 [ "${BRANCH::1}" == '$' ] && BRANCH=`eval echo ${BRANCH}`
 [ "${TEXT::1}" == '$' ] && TEXT=`eval echo ${TEXT}`
 [ "${APP::1}" == '$' ] && APP=`eval echo ${APP}`
-
 
 ########### debug
 check_debug () {
