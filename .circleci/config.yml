@@ -38,6 +38,12 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - run:
+          # exp. CIRCLE_TAG="alpha/test/v0.0.1"
+          name: CIRCLE_BRANCH setting (for tag push)
+          command: |
+            [ -n "${CIRCLE_TAG}" ] && \
+            echo "export CIRCLE_BRANCH=`echo ${CIRCLE_TAG} | sed "s#/$(echo ${CIRCLE_TAG} | awk -F "/" '{ print $(NF-1) }')/$(echo ${CIRCLE_TAG} | awk -F "/" '{ print $NF }')##"`" >> $BASH_ENV
       - add_ssh_keys:
           fingerprints:
             - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
@@ -98,3 +104,12 @@ workflows:
             branches:
               only:
                 - main
+
+  test_tag_deploy:
+    jobs:
+      - integration-test-1:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
