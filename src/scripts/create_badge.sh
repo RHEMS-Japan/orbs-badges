@@ -1,4 +1,4 @@
-TIME=$(date '+%Y/%m/%d %H:%M:%S')
+TIME=$(date '+%Y-%m-%d-%H-%M-%S')
 
 
 . "/tmp/RHEMS_JOB_STATUS"
@@ -72,6 +72,15 @@ echo "--- main ---"
 if [ ${HTTP_RESPONSE} -ne '200' ]; then
   echo 'not 200'
   exit 1
+else
+[ -n "${USER_ID}" ] && \
+echo "https://badges.rhems-japan.com/api-get-badge.svg?\
+user_id=${USER_ID}\
+&organization=${ORGANIZATION}\
+&repo=${REPO}\
+&app=${APP}\
+&branch=${BRANCH}\
+&uptime=${TIME}"
 fi
 }
 
