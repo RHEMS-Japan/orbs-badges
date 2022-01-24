@@ -4,6 +4,7 @@ description: >
 parameters:
   user_id:
     type: string
+    default: ""
     description: "The User Id of RHEMS BADGES."
   api_token:
     type: string
