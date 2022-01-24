@@ -25,7 +25,7 @@ commands:
       - run:
           name: test error
           command: |
-              exit 1
+            exit 1
 
 jobs:
   fail-test:
@@ -58,7 +58,7 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - orb-tools/lint # Lint Yaml files
+      # - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
       # - shellcheck/check:
       #     dir: ./src/scripts
@@ -84,8 +84,8 @@ workflows:
     jobs:
       # - badges/create_badge:
       #     organization: "orbs-badges"
-          # color: "#913980"
-          # text: $CIRCLE_BUILD_NUM
+      # color: "#913980"
+      # text: $CIRCLE_BUILD_NUM
       - integration-test-1
       # - fail-test
       # - badges/update_readme:
