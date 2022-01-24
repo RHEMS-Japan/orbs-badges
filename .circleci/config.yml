@@ -53,7 +53,7 @@ jobs:
           fingerprints:
             - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
       - badges/create_badge:
-          user_id: "bhyq8wIKCK1XAAk5qvyU"
+          # user_id: "bhyq8wIKCK1XAAk5qvyU"
           app: "orbs-badges"
           organization: "orbs-badges"
           # color: "#913980"
