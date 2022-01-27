@@ -14,7 +14,7 @@ update_readme () {
     git config --global user.name "${GIT_USER_NAME}"
     git checkout ${CIRCLE_BRANCH}
     git fetch
-    git merge
+    git merge origin/${CIRCLE_BRANCH}
     git add ${FILE_PATH}
     echo "--- run git ---"
     git commit -m "[skip ci] ${FILE_PATH} Update"
