@@ -5,9 +5,9 @@
 
 This orb creates a badge that looks like this:
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220127-133023)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220127-133303)
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220127-133023)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220127-133303)
 
 This orb has the following functions.
 
