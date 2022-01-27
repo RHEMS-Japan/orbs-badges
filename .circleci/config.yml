@@ -55,8 +55,8 @@ jobs:
       - badges/create-badge:
           app: "orbs-badges"
           organization: "orbs-badges"
-          # color: "white"
-          # text: $CIRCLE_BUILD_NUM
+          color: "pink"
+          text: $CIRCLE_BUILD_NUM
       - badges/update-readme
 
   integration-test-2:
@@ -75,8 +75,8 @@ jobs:
       - badges/create-badge:
           app: "orbs-badges"
           organization: "orbs-badges"
-          # color: "white"
-          # text: $CIRCLE_BUILD_NUM
+          color: "blue"
+          text: $CIRCLE_BUILD_NUM
       - badges/update-readme
 
 workflows:
