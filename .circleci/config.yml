@@ -52,12 +52,12 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      - badges/create_badge:
+      - badges/create-badge:
           app: "orbs-badges"
           organization: "orbs-badges"
           # color: "white"
           # text: $CIRCLE_BUILD_NUM
-      - badges/update_readme
+      - badges/update-readme
 
 workflows:
   test-pack:
