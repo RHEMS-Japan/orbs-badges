@@ -59,6 +59,26 @@ jobs:
           # text: $CIRCLE_BUILD_NUM
       - badges/update-readme
 
+  integration-test-2:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          # exp. CIRCLE_TAG="alpha/test/v0.0.1"
+          name: add scripts
+          command: echo ". .circleci/scripts/functions.sh" >> $BASH_ENV
+      - add_ssh_keys:
+          fingerprints:
+            - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - run: sleep 60
+      - badges/create-badge:
+          app: "orbs-badges"
+          organization: "orbs-badges"
+          # color: "white"
+          # text: $CIRCLE_BUILD_NUM
+      - badges/update-readme
+
 workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
@@ -109,6 +129,11 @@ workflows:
             branches:
               only:
                 - main
+
+  integration-test_deploy_2:
+    when: << pipeline.parameters.run-integration-tests >>
+    jobs:
+      - integration-test-2
 
   test-pack-from-tag:
     unless: << pipeline.parameters.run-integration-tests >>
