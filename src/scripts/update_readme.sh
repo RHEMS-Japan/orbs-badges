@@ -1,6 +1,6 @@
 update_readme () {
   echo "== run update_readme =="
-  echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  # echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   [ "${BRANCH::1}" == '$' ] && BRANCH=`eval echo ${BRANCH}`
   if [ -n "${BRANCH}" ]; then
     
