@@ -67,6 +67,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install sudo & git
+          command: |
+            apt-get update && apt-get install -y sudo git
+            git --version
+      - run:
           # exp. CIRCLE_TAG="alpha/test/v0.0.1"
           name: add scripts
           command: echo ". .circleci/scripts/functions.sh" >> $BASH_ENV
