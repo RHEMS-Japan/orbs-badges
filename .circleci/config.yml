@@ -63,7 +63,7 @@ jobs:
   integration-test-2:
     working_directory: /tmp/work
     docker:
-      - image: circleci/php:7.3.12-cli-stretch-node-browsers
+      - image: rhemsjapan/blue-deploy-deploy:latest
     steps:
       - checkout
       - run:
