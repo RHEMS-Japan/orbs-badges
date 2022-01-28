@@ -61,8 +61,9 @@ jobs:
       - badges/update-readme
 
   integration-test-2:
+    working_directory: /tmp/work
     docker:
-      - image: cimg/base:stable
+      - image: circleci/php:7.3.12-cli-stretch-node-browsers
     steps:
       - checkout
       - run:
@@ -72,7 +73,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-      - run: sleep 40
+      # - run: sleep 40
       - badges/create-badge:
           app: "orbs-badges"
           organization: "orbs-badges"
@@ -112,7 +113,7 @@ workflows:
       #     organization: "orbs-badges"
       # color: "#913980"
       # text: $CIRCLE_BUILD_NUM
-      - integration-test-1
+      - integration-test-2
       # - fail-test
       # - badges/update_readme:
       #     only_date: true
