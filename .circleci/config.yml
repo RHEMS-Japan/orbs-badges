@@ -52,11 +52,12 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
+      - fail-test
       - badges/create-badge:
           app: "orbs-badges"
           organization: "orbs-badges"
-          color: "pink"
-          text: $CIRCLE_BUILD_NUM
+          # color: "pink"
+          # text: $CIRCLE_BUILD_NUM
       - badges/update-readme
 
   integration-test-2:
@@ -130,10 +131,10 @@ workflows:
               only:
                 - main
 
-  integration-test_deploy_2:
-    when: << pipeline.parameters.run-integration-tests >>
-    jobs:
-      - integration-test-2
+  # integration-test_deploy_2:
+  #   when: << pipeline.parameters.run-integration-tests >>
+  #   jobs:
+  #     - integration-test-2
 
   test-pack-from-tag:
     unless: << pipeline.parameters.run-integration-tests >>
