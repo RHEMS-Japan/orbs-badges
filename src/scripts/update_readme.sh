@@ -7,8 +7,7 @@ update_readme () {
     git config --global user.email ${GIT_USER_EMAIL}
     git config --global user.name "${GIT_USER_NAME}"
     git checkout ${CIRCLE_BRANCH}
-    git fetch
-    git merge origin/${CIRCLE_BRANCH}
+    git pull
 
     if [ ${ONLY_DATE} = 0 ]; then
       echo "only_date: false"
