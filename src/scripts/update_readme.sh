@@ -7,6 +7,7 @@ update_readme () {
     git config --global user.email ${GIT_USER_EMAIL}
     git config --global user.name "${GIT_USER_NAME}"
     git checkout ${CIRCLE_BRANCH}
+    git branch --set-upstream-to=origin/${CIRCLE_BRANCH} ${CIRCLE_BRANCH}
     git pull
 
     if [ ${ONLY_DATE} = 0 ]; then
