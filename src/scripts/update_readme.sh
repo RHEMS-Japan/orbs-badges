@@ -6,7 +6,7 @@ update_readme () {
     
     git config --global user.email ${GIT_USER_EMAIL}
     git config --global user.name "${GIT_USER_NAME}"
-    git config --global pull.rebase false # test
+    git config --global pull.rebase true # test
     git checkout ${CIRCLE_BRANCH}
     _key=$(eval echo ${FINGER_PRINT} | sed -e 's/://g')
     export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${_key}"
@@ -39,7 +39,8 @@ update_readme () {
         echo -e "\n<< Retry $i >>\n"
         sleep 3
         git pull --no-edit
-        git push -u origin ${CIRCLE_BRANCH}
+        git rebase origin/${CIRCLE_BRANCH} # test
+        git push -u origin ${CIRCLE_BRANCH} -f # test
         if [ $? -eq 0 ]; then
           break
         fi
