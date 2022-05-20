@@ -39,7 +39,7 @@ update_readme () {
         echo -e "\n<< Retry $i >>\n"
         sleep 3
         git reset HEAD
-        git pull --no-edit
+        git pull origin ${CIRCLE_BRANCH}
         git add ${FILE_PATH}
         git commit -m "[skip ci] ${FILE_PATH} Update"
         git push -u origin ${CIRCLE_BRANCH}
