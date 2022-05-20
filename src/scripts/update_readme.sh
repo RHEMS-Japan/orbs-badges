@@ -13,7 +13,7 @@ update_readme () {
     git pull
 
     echo "sleep now"
-    sleep 4
+    sleep 10
 
     if [ ${ONLY_DATE} = 0 ]; then
       echo "only_date: false"
