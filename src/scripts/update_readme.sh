@@ -12,6 +12,9 @@ update_readme () {
     git branch --set-upstream-to=origin/${CIRCLE_BRANCH} ${CIRCLE_BRANCH}
     git pull
 
+    echo "sleep now"
+    sleep 4
+
     if [ ${ONLY_DATE} = 0 ]; then
       echo "only_date: false"
       sed -i -e "s#branch=.*\&cised=true.*#branch=${BRANCH}\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
