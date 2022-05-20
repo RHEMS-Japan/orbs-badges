@@ -42,7 +42,7 @@ update_readme () {
         sleep 3
         git stash
         git pull --no-edit
-        git stash pop stash@{0}
+        git stash apply stash@{0}
         git commit -m "[skip ci] ${FILE_PATH} Update"
         git push -u origin ${CIRCLE_BRANCH}
         if [ $? -eq 0 ]; then
