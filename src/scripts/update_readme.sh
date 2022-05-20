@@ -16,14 +16,16 @@ update_readme () {
     echo "sleep now"
     sleep 10
 
-    if [ ${ONLY_DATE} = 0 ]; then
-      echo "only_date: false"
-      sed -i -e "s#branch=.*\&cised=true.*#branch=${BRANCH}\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
-    else
-      echo "only_date: true"
-      sed -i -e "s#cised=true.*#cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
-    fi
-    
+    function edit-readme() {
+      if [ ${ONLY_DATE} = 0 ]; then
+        echo "only_date: false"
+        sed -i -e "s#branch=.*\&cised=true.*#branch=${BRANCH}\&cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
+      else
+        echo "only_date: true"
+        sed -i -e "s#cised=true.*#cised=true\&update=$(date "+%Y%m%d-%H%M%S")\)#g" ${FILE_PATH}
+      fi
+    }
+    edit-readme
     git add ${FILE_PATH}
     echo "--- run git ---"
     git commit -m "[skip ci] ${FILE_PATH} Update"
@@ -38,8 +40,8 @@ update_readme () {
       do
         echo -e "\n<< Retry $i >>\n"
         sleep 3
-        git reset HEAD
-        git pull origin ${CIRCLE_BRANCH}
+        git reset --hard HEAD
+        edit-readme
         git add ${FILE_PATH}
         git commit -m "[skip ci] ${FILE_PATH} Update"
         git push -u origin ${CIRCLE_BRANCH}
