@@ -26,7 +26,31 @@ update_readme () {
     git add ${FILE_PATH}
     echo "--- run git ---"
     git commit -m "[skip ci] ${FILE_PATH} Update"
+
+    set +e
     git push origin ${CIRCLE_BRANCH}
+
+    RESULT=$?
+    echo "RESULT = ${RESULT}"
+    if [ $RESULT -ne 0 ]; then
+      for i in {2..10};
+      do
+        echo -e "\n<< Retry $i >>\n"
+        sleep 3
+        git pull --no-edit
+        git push -u origin ${CIRCLE_BRANCH}
+        if [ $? -eq 0 ]; then
+          break
+        fi
+      done
+      if [ $i -eq 10 ]; then
+        echo -e "\n tried 10 times, but it failed, so it ends. \n"
+        set -e
+        exit 1
+      fi
+    else
+      echo 'Success'
+    fi
   fi
 }
 
