@@ -38,7 +38,8 @@ update_readme () {
       do
         echo -e "\n<< Retry $i >>\n"
         sleep 3
-        git pull --no-edit
+        git pull
+        # git pull --no-edit
         git push -u origin ${CIRCLE_BRANCH}
         if [ $? -eq 0 ]; then
           break
