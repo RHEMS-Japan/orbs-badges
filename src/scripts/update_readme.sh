@@ -41,7 +41,7 @@ update_readme () {
         echo -e "\n<< Retry $i >>\n"
         sleep 3
         git reset --hard HEAD
-        git pull
+        git pull --no-edit
         edit-readme
         git add ${FILE_PATH}
         git commit -m "[skip ci] ${FILE_PATH} Update"
