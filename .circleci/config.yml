@@ -52,6 +52,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - run: sleep 1
       - checkout
       - add_ssh_keys:
           fingerprints:
@@ -61,7 +62,7 @@ jobs:
           organization: "orbs-badges"
           color: "blue"
           text: $CIRCLE_BUILD_NUM
-      - run: sleep 10
+      - run: sleep 5
       - badges/update-readme:
           fingerprint: << pipeline.parameters.fingerprint >>
 
