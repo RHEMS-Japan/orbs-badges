@@ -5,10 +5,10 @@
 
 This orb creates a badge that looks like this:
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220520-054007)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220520-054510)
 
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220520-054007)
-![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges-2&branch=alpha&cised=true&update=20220520-054007)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges&branch=alpha&cised=true&update=20220520-054510)
+![badge](https://badges.rhems-japan.com/api-get-badge.svg?user_id=bhyq8wIKCK1XAAk5qvyU&timedelta=9&organization=orbs-badges&repo=orbs-badges&app=orbs-badges-2&branch=alpha&cised=true&update=20220520-054510)
 
 This orb has the following functions.
 
