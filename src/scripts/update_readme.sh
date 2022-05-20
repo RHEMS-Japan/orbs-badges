@@ -40,7 +40,11 @@ update_readme () {
       do
         echo -e "\n<< Retry $i >>\n"
         sleep 3
+        git reset --hard HEAD^
         git pull --no-edit
+        edit-readme
+        git add ${FILE_PATH}
+        git commit -m "[skip ci] ${FILE_PATH} Update"
         git push -u origin ${CIRCLE_BRANCH}
         if [ $? -eq 0 ]; then
           break
