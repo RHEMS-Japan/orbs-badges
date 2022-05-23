@@ -39,13 +39,13 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - << pipeline.parameters.fingerprint >>
-      # - fail-test
+      - fail-test
       - badges/create-badge:
           app: "orbs-badges"
           organization: "orbs-badges"
           color: "pink"
           text: $CIRCLE_BUILD_NUM
-          # is_error_text: "failfail"
+          is_error_text: "failfail"
       - badges/update-readme:
           fingerprint: << pipeline.parameters.fingerprint >>
 
