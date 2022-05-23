@@ -39,7 +39,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - << pipeline.parameters.fingerprint >>
-      - fail-test
+      # - fail-test
       - badges/create-badge:
           app: "orbs-badges"
           organization: "orbs-badges"
