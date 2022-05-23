@@ -12,9 +12,6 @@ update_readme () {
     git branch --set-upstream-to=origin/${CIRCLE_BRANCH} ${CIRCLE_BRANCH}
     git pull
 
-    echo "sleep now"
-    sleep 10
-
     function edit-readme() {
       if [ ${ONLY_DATE} = 0 ]; then
         echo "only_date: false"
