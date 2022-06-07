@@ -32,8 +32,7 @@ parameters:
 
 steps:
   - when:
-      condition:
-        equal: [true, true]
+      condition: always
       steps:
         - add_ssh_keys:
             fingerprints:
