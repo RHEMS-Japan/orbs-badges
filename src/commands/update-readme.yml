@@ -33,6 +33,12 @@ parameters:
 steps:
   - run:
       when: always
+      command: |
+        - add_ssh_keys:
+            fingerprints:
+              - << parameters.fingerprint >>
+  - run:
+      when: always
       name: update README
       environment:
         GIT_USER_NAME: << parameters.user_name >>
