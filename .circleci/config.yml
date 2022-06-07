@@ -36,9 +36,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - << pipeline.parameters.fingerprint >>
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - << pipeline.parameters.fingerprint >>
       - fail-test
       - badges/create-badge:
           app: "orbs-badges"
@@ -54,9 +54,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - << pipeline.parameters.fingerprint >>
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - << pipeline.parameters.fingerprint >>
       - badges/create-badge:
           app: "orbs-badges-2"
           organization: "orbs-badges"
