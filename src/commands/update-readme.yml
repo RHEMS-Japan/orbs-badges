@@ -31,9 +31,10 @@ parameters:
     description: "[required] Fingerprint with write access to push ReadMe changes to the repository."
 
 steps:
-  - run:
-      when: always
-      command: |
+  - when:
+      condition:
+        equal: [true, true]
+      steps:
         - add_ssh_keys:
             fingerprints:
               - << parameters.fingerprint >>
