@@ -32,7 +32,11 @@ parameters:
 
 steps:
   - add_ssh_keys:
-      when: always
+      when: on_success
+      fingerprints:
+          - << parameters.fingerprint >>
+  - add_ssh_keys:
+      when: on_fail
       fingerprints:
           - << parameters.fingerprint >>
   - run:
