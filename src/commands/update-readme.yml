@@ -31,12 +31,13 @@ parameters:
     description: "[required] Fingerprint with write access to push ReadMe changes to the repository."
 
 steps:
-  - when:
-      condition: always
-      steps:
-        - add_ssh_keys:
-            fingerprints:
-              - << parameters.fingerprint >>
+  - run:
+      when: always
+      name: test
+      command: |
+        curl --request GET \
+        --url https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/checkout-key/<< parameters.fingerprint >> \
+        --header 'authorization: Basic REPLACE_BASIC_AUTH'
   - run:
       when: always
       name: update README
