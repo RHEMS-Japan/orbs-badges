@@ -30,15 +30,20 @@ commands:
           command: |
             exit 1
 
+executors:
+  cimg_base:
+    docker:
+      - image: cimg/base:2022.10-20.04
+
+
 jobs:
   integration-test-1:
-    docker:
-      - image: cimg/base:stable
+    executor: cimg_base
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - << pipeline.parameters.fingerprint >>
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - << pipeline.parameters.fingerprint >>
       # - fail-test
       - badges/create-badge:
           app: "orbs-badges"
@@ -49,14 +54,16 @@ jobs:
       - badges/update-readme:
           fingerprint: << pipeline.parameters.fingerprint >>
 
+  
+
   integration-test-2:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - << pipeline.parameters.fingerprint >>
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - << pipeline.parameters.fingerprint >>
       - badges/create-badge:
           app: "orbs-badges-2"
           organization: "orbs-badges"
