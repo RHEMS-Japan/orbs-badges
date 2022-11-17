@@ -5,6 +5,8 @@ orbs:
   orb-tools: circleci/orb-tools@10.0
   bats: circleci/bats@1.0
   shellcheck: circleci/shellcheck@2.0
+  rj-badge: rhems-japan/badges@0.0.14
+
 
 parameters:
   run-integration-tests:
@@ -54,8 +56,6 @@ jobs:
       - badges/update-readme:
           fingerprint: << pipeline.parameters.fingerprint >>
 
-  
-
   integration-test-2:
     docker:
       - image: cimg/base:stable
@@ -73,55 +73,68 @@ jobs:
       - badges/update-readme:
           fingerprint: << pipeline.parameters.fingerprint >>
 
-workflows:
-  test-pack:
-    unless: << pipeline.parameters.run-integration-tests >>
-    jobs:
-      # - orb-tools/lint # Lint Yaml files
-      - orb-tools/pack # Pack orb source
-      # - shellcheck/check:
-      #     dir: ./src/scripts
-      #     exclude: SC2148
-      # - bats/run:
-      #     path: ./src/tests
-      - orb-tools/publish-dev:
-          orb-name: rhems-japan/badges
-          context: orb-publishing
-          requires:
-            # - orb-tools/lint
-            - orb-tools/pack
-            # - bats/run
-            # - shellcheck/check
-      - orb-tools/trigger-integration-tests-workflow:
-          name: trigger-integration-dev
-          context: orb-publishing
-          requires:
-            - orb-tools/publish-dev
+  test-badge:
+    executor: cimg_base
+    steps:
+      - checkout
+      - rj-badge/create-badge:
+          app: "orbs-badges"
+          organization: "orbs-badges"
+          color: "pink"
+          text: $CIRCLE_BUILD_NUM
 
-  integration-test_deploy:
-    when: << pipeline.parameters.run-integration-tests >>
+workflows:
+  test-badge:
     jobs:
-      # - badges/create_badge:
-      #     organization: "orbs-badges"
-      # color: "#913980"
-      # text: $CIRCLE_BUILD_NUM
-      - integration-test-1
-      # - integration-test-2
-      # - fail-test
-      # - badges/update_readme:
-      #     only_date: true
-      #     branch: hoge
-      #     fingerprint: << pipeline.parameters.fingerprint >>
-      - orb-tools/dev-promote-prod-from-commit-subject:
-          orb-name: rhems-japan/badges
-          context: orb-publishing
-          add-pr-comment: false
-          fail-if-semver-not-indicated: true
-          publish-version-tag: false
-          requires:
-            - integration-test-1
-            # - integration-test-2
-          filters:
-            branches:
-              only:
-                - main
+      - test-badge
+  # test-pack:
+  #   unless: << pipeline.parameters.run-integration-tests >>
+  #   jobs:
+  #     # - orb-tools/lint # Lint Yaml files
+  #     - orb-tools/pack # Pack orb source
+  #     # - shellcheck/check:
+  #     #     dir: ./src/scripts
+  #     #     exclude: SC2148
+  #     # - bats/run:
+  #     #     path: ./src/tests
+  #     - orb-tools/publish-dev:
+  #         orb-name: rhems-japan/badges
+  #         context: orb-publishing
+  #         requires:
+  #           # - orb-tools/lint
+  #           - orb-tools/pack
+  #           # - bats/run
+  #           # - shellcheck/check
+  #     - orb-tools/trigger-integration-tests-workflow:
+  #         name: trigger-integration-dev
+  #         context: orb-publishing
+  #         requires:
+  #           - orb-tools/publish-dev
+
+  # integration-test_deploy:
+  #   when: << pipeline.parameters.run-integration-tests >>
+  #   jobs:
+  #     # - badges/create_badge:
+  #     #     organization: "orbs-badges"
+  #     # color: "#913980"
+  #     # text: $CIRCLE_BUILD_NUM
+  #     - integration-test-1
+  #     # - integration-test-2
+  #     # - fail-test
+  #     # - badges/update_readme:
+  #     #     only_date: true
+  #     #     branch: hoge
+  #     #     fingerprint: << pipeline.parameters.fingerprint >>
+  #     - orb-tools/dev-promote-prod-from-commit-subject:
+  #         orb-name: rhems-japan/badges
+  #         context: orb-publishing
+  #         add-pr-comment: false
+  #         fail-if-semver-not-indicated: true
+  #         publish-version-tag: false
+  #         requires:
+  #           - integration-test-1
+  #           # - integration-test-2
+  #         filters:
+  #           branches:
+  #             only:
+  #               - main
