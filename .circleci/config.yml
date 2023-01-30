@@ -52,7 +52,7 @@ jobs:
           organization: "orbs-badges"
           color: "pink"
           text: $CIRCLE_BUILD_NUM
-          is_error_text: "failfail"
+          # is_error_text: "failfail"
       - badges/update-readme:
           fingerprint: << pipeline.parameters.fingerprint >>
 
@@ -84,57 +84,47 @@ jobs:
           text: $CIRCLE_BUILD_NUM
 
 workflows:
-  test-badge:
+  # test-badge:
+  #   jobs:
+  #     - test-badge
+  test-pack:
+    unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - test-badge
-  # test-pack:
-  #   unless: << pipeline.parameters.run-integration-tests >>
-  #   jobs:
-  #     # - orb-tools/lint # Lint Yaml files
-  #     - orb-tools/pack # Pack orb source
-  #     # - shellcheck/check:
-  #     #     dir: ./src/scripts
-  #     #     exclude: SC2148
-  #     # - bats/run:
-  #     #     path: ./src/tests
-  #     - orb-tools/publish-dev:
-  #         orb-name: rhems-japan/badges
-  #         context: orb-publishing
-  #         requires:
-  #           # - orb-tools/lint
-  #           - orb-tools/pack
-  #           # - bats/run
-  #           # - shellcheck/check
-  #     - orb-tools/trigger-integration-tests-workflow:
-  #         name: trigger-integration-dev
-  #         context: orb-publishing
-  #         requires:
-  #           - orb-tools/publish-dev
+      # - orb-tools/lint # Lint Yaml files
+      - orb-tools/pack # Pack orb source
+      # - shellcheck/check:
+      #     dir: ./src/scripts
+      #     exclude: SC2148
+      # - bats/run:
+      #     path: ./src/tests
+      - orb-tools/publish-dev:
+          orb-name: rhems-japan/badges
+          context: orb-publishing
+          requires:
+            # - orb-tools/lint
+            - orb-tools/pack
+            # - bats/run
+            # - shellcheck/check
+      - orb-tools/trigger-integration-tests-workflow:
+          name: trigger-integration-dev
+          context: orb-publishing
+          requires:
+            - orb-tools/publish-dev
 
-  # integration-test_deploy:
-  #   when: << pipeline.parameters.run-integration-tests >>
-  #   jobs:
-  #     # - badges/create_badge:
-  #     #     organization: "orbs-badges"
-  #     # color: "#913980"
-  #     # text: $CIRCLE_BUILD_NUM
-  #     - integration-test-1
-  #     # - integration-test-2
-  #     # - fail-test
-  #     # - badges/update_readme:
-  #     #     only_date: true
-  #     #     branch: hoge
-  #     #     fingerprint: << pipeline.parameters.fingerprint >>
-  #     - orb-tools/dev-promote-prod-from-commit-subject:
-  #         orb-name: rhems-japan/badges
-  #         context: orb-publishing
-  #         add-pr-comment: false
-  #         fail-if-semver-not-indicated: true
-  #         publish-version-tag: false
-  #         requires:
-  #           - integration-test-1
-  #           # - integration-test-2
-  #         filters:
-  #           branches:
-  #             only:
-  #               - main
+  integration-test_deploy:
+    when: << pipeline.parameters.run-integration-tests >>
+    jobs:
+      - integration-test-1
+      - orb-tools/dev-promote-prod-from-commit-subject:
+          orb-name: rhems-japan/badges
+          context: orb-publishing
+          add-pr-comment: false
+          fail-if-semver-not-indicated: true
+          publish-version-tag: false
+          requires:
+            - integration-test-1
+            # - integration-test-2
+          filters:
+            branches:
+              only:
+                - main
