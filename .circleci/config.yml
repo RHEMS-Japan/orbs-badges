@@ -1,127 +1,34 @@
 version: 2.1
-
+setup: true
 orbs:
-  badges: rhems-japan/badges@<<pipeline.parameters.dev-orb-version>>
-  orb-tools: circleci/orb-tools@10.0
-  bats: circleci/bats@1.0
-  shellcheck: circleci/shellcheck@2.0
+  orb-tools: circleci/orb-tools@11.6.1
+  shellcheck: circleci/shellcheck@3.1
 
-parameters:
-  run-integration-tests:
-    description: An internal flag to prevent integration test from running before a development version has been created.
-    type: boolean
-    default: false
-  dev-orb-version:
-    description: >
-      The development version of the orb to test.
-      This value is automatically adjusted by the "trigger-integration-tests-workflow" job to correspond with the specific version created by the commit and should not be edited.
-      A "dev:alpha" version must exist for the initial pipeline run.
-    type: string
-    default: "dev:alpha"
-  fingerprint:
-    type: string
-    default: "a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72"
-
-commands:
-  fail-test:
-    steps:
-      - run:
-          name: test error
-          command: |
-            exit 1
-
-executors:
-  cimg_base:
-    docker:
-      - image: cimg/base:2022.10-20.04
-
-
-jobs:
-  integration-test-1:
-    executor: cimg_base
-    steps:
-      - checkout
-      # - add_ssh_keys:
-      #     fingerprints:
-      #       - << pipeline.parameters.fingerprint >>
-      # - fail-test
-      - badges/create-badge:
-          app: "orbs-badges"
-          organization: "orbs-badges"
-          color: "pink"
-          text: $CIRCLE_BUILD_NUM
-          is_error_text: "fail"
-      - badges/update-readme:
-          fingerprint: << pipeline.parameters.fingerprint >>
-
-  
-
-  integration-test-2:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      # - add_ssh_keys:
-      #     fingerprints:
-      #       - << pipeline.parameters.fingerprint >>
-      - badges/create-badge:
-          app: "orbs-badges-2"
-          organization: "orbs-badges"
-          color: "blue"
-          text: $CIRCLE_BUILD_NUM
-      - run: sleep 1
-      - badges/update-readme:
-          fingerprint: << pipeline.parameters.fingerprint >>
+filters: &filters
+  tags:
+    only: /.*/
 
 workflows:
-  test-pack:
-    unless: << pipeline.parameters.run-integration-tests >>
+  lint-pack:
     jobs:
-      # - orb-tools/lint # Lint Yaml files
-      - orb-tools/pack # Pack orb source
+      - orb-tools/lint:
+          filters: *filters
+      - orb-tools/pack:
+          filters: *filters
+      - orb-tools/review:
+          filters: *filters
       # - shellcheck/check:
-      #     dir: ./src/scripts
-      #     exclude: SC2148
-      # - bats/run:
-      #     path: ./src/tests
-      - orb-tools/publish-dev:
+      #     filters: *filters
+      - orb-tools/publish:
           orb-name: rhems-japan/badges
-          context: orb-publishing
+          vcs-type: << pipeline.project.type >>
           requires:
-            # - orb-tools/lint
-            - orb-tools/pack
-            # - bats/run
-            # - shellcheck/check
-      - orb-tools/trigger-integration-tests-workflow:
-          name: trigger-integration-dev
+            [orb-tools/lint, orb-tools/review, orb-tools/pack]
           context: orb-publishing
-          requires:
-            - orb-tools/publish-dev
-
-  integration-test_deploy:
-    when: << pipeline.parameters.run-integration-tests >>
-    jobs:
-      # - badges/create_badge:
-      #     organization: "orbs-badges"
-      # color: "#913980"
-      # text: $CIRCLE_BUILD_NUM
-      - integration-test-1
-      - integration-test-2
-      # - fail-test
-      # - badges/update_readme:
-      #     only_date: true
-      #     branch: hoge
-      #     fingerprint: << pipeline.parameters.fingerprint >>
-      - orb-tools/dev-promote-prod-from-commit-subject:
-          orb-name: rhems-japan/badges
+          filters: *filters
+      - orb-tools/continue:
+          pipeline-number: << pipeline.number >>
+          vcs-type: << pipeline.project.type >>
           context: orb-publishing
-          add-pr-comment: false
-          fail-if-semver-not-indicated: true
-          publish-version-tag: false
-          requires:
-            - integration-test-1
-            - integration-test-2
-          filters:
-            branches:
-              only:
-                - main
+          requires: [orb-tools/publish]
+          filters: *filters
