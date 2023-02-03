@@ -8,6 +8,11 @@ executors:
     docker:
       - image: cimg/base:2022.10-20.04
 
+parameters:
+  fingerprint:
+    type: string
+    default: a3:d6:d8:63:d8:a8:95:2d:a3:10:31:5e:c7:3d:ed:72
+
 filters: &filters
   tags:
     only: /.*/
