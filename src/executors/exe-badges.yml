@@ -1,2 +1,4 @@
+description: >
+  ubuntu20.04
 docker:
   - image: cimg/base:2022.10-20.04
