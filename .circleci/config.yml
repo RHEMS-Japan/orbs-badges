@@ -23,7 +23,7 @@ workflows:
           orb-name: rhems-japan/badges
           vcs-type: << pipeline.project.type >>
           requires:
-            [orb-tools/lint, orb-tools/review, orb-tools/pack, shellcheck/check]
+            [orb-tools/lint, orb-tools/review, orb-tools/pack]
           context: orb-publishing
           filters: *filters
       - orb-tools/continue:
