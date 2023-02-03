@@ -43,6 +43,7 @@ workflows:
           vcs-type: << pipeline.project.type >>
           pub-type: production
           enable-pr-comment: false
+          circleci-token: CI_TOKEN_TEST
           requires:
             - integration-test-1
             - orb-tools/pack
