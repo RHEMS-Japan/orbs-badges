@@ -56,7 +56,7 @@ https://badges.rhems-japan.com/api-update-badge \
 "app": "${APP}",
 "branch": "${BRANCH}",
 "status": ${STATUS},
-"log": ${LOG},
+"log": "${LOG}",
 `[ -n "${TEXT}" ] && \
 cat << EOF
 "txt": "${TEXT}",
