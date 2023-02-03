@@ -42,6 +42,7 @@ workflows:
           orb-name: rhems-japan/badges
           vcs-type: << pipeline.project.type >>
           pub-type: production
+          enable-pr-comment: false
           requires:
             - integration-test-1
             - orb-tools/pack
