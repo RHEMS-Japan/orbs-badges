@@ -25,6 +25,7 @@ workflows:
           requires:
             [orb-tools/lint, orb-tools/review, orb-tools/pack]
           context: orb-publishing
+          enable-pr-comment: false
           filters: *filters
       - orb-tools/continue:
           pipeline-number: << pipeline.number >>

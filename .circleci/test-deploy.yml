@@ -31,11 +31,15 @@ jobs:
       - badges/update-readme:
           fingerprint: << pipeline.parameters.fingerprint >>
 
+  add-tag-env:
+    executor: cimg_base
+    steps:
+      - run:
+          command: echo "export CIRCLE_TAG=v0.0.15" >> $BASH_ENV
 workflows:
   test-deploy:
     jobs:
-      - run:
-          command: echo "export CIRCLE_TAG=v0.0.15" >> $BASH_ENV
+      - add-tag-env
       - integration-test-1:
           filters: *filters
       - orb-tools/pack:
@@ -46,6 +50,7 @@ workflows:
           pub-type: production
           enable-pr-comment: false
           requires:
+            - add-tag-env
             - integration-test-1
             - orb-tools/pack
           context: orb-publishing
